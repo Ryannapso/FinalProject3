@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
 const ticketsSchema = mongoose.Schema({
-  
-
   problem: {
     type: String,
   },
@@ -20,6 +18,11 @@ const ticketsSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: [true, "ticket has to be linked to a customer."],
+      ref: "Customer",
+    },
 });
 
 module.exports = mongoose.model("ticket", ticketsSchema);

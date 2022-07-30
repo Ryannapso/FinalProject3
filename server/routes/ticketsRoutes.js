@@ -26,6 +26,7 @@ router.post("/", (req, res) => {
     problem: req.body.problem,
     status: req.body.status,
     assignedTo: req.body.assignedTo,
+    customer: req.body.customer
   });
 
   newTicket

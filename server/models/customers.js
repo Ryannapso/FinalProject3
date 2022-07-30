@@ -32,4 +32,4 @@ const customersSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("customer", customersSchema);
+module.exports = mongoose.model("Customer", customersSchema);
