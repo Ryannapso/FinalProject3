@@ -17,19 +17,10 @@ const customersSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  problem: {
-    type: String,
-  },
-  assignedTo: {
-    type: String,
-    default: "cr",
-    enum: ["cr", "Phone", "PC", "BuildPc"],
-  },
-  status: {
-    type: String,
-    default: "open",
-    enum: ["open", "Updated", "Answered", "Closed"],
-  },
+  tickets: [{
+     type: mongoose.Schema.Types.ObjectId,
+      ref: "Ticket",
+  }]
 });
 
 module.exports = mongoose.model("Customer", customersSchema);

@@ -5,9 +5,9 @@ let customersSchema = require("../models/customers");
 
 
 
-router.get("/", (req, res) => {
+router.get("/:name", (req, res) => {
   customersSchema
-    .find()
+    .find({ name: req.params.name }).populate('tickets')
     .then((customer) => res.json(customer))
     .catch((err) => res.status(400).json("Error: " + err));
 });
@@ -26,9 +26,6 @@ router.post("/", (req, res) => {
     phone: req.body.phone,
     address: req.body.address,
     UserDate: req.body.UserDate,
-    problem: req.body.problem,
-    assignedTo: req.body.assignedTo,
-    status: req.body.status,
   });
 
   newCustomer
@@ -52,14 +49,9 @@ router.put("/:id", (req, res) => {
 });
 
 //find
-router.get("/:key",async(req, res)=>{
+router.get("/search/:key",async(req, res)=>{
   
-  let data = await customersSchema.find({
-    "$or":[
-     // {email:{$regex:req.params.key}},
-      {phone:{$regex:req.params.key}}
-    ]
-  })
+  let data = await customersSchema.find({name: req.params.key})
   res.send(data)
 })
 

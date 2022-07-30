@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 let ticketsSchema = require("../models/ticketModel");
-
-
+const Customer = require("../models/customers")
 
 router.get("/", (req, res) => {
   ticketsSchema
@@ -11,6 +10,13 @@ router.get("/", (req, res) => {
     .then((ticket) => res.json(ticket))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+
+router.get("/search", (req, res) => {
+  ticketsSchema
+    .find({ customer: "M1221" })
+  .then((ticket) => res.json(ticket))
+    .catch((err) => res.status(400).json("Error: " + err));
+})
 
 router.get("/:id", (req, res) => {
   ticketsSchema
@@ -26,12 +32,15 @@ router.post("/", (req, res) => {
     problem: req.body.problem,
     status: req.body.status,
     assignedTo: req.body.assignedTo,
-    customer: req.body.customer
   });
 
   newTicket
     .save()
-    .then((ticket) => res.json("New ticket Added"))
+    .then((result) => Customer.findById("62e53c81cdd5a63fdcdf00d8", (err, customer) => {
+      if (customer) {
+        res.json({message: "Ticker Created !"})
+      }
+    }))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
