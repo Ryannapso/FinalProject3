@@ -1,0 +1,77 @@
+GET http://localhost:3001/api/users/62c186e59ccfa34ba7b5b4a1
+
+###
+
+GET http://localhost:3001/api/tickets
+
+
+###
+
+DELETE http://localhost:3001/api/users/profile
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmRhMmE4NGU2NWRlMjE4NzhkZTljMzAiLCJpYXQiOjE2MDgyODM3NzZ9.lJ9Y9Mu0EzSksRpmnz0dTG1ig_6pNMHBbeJmgfLc8n0
+
+###
+
+POST http://localhost:3001/api/tickets
+Content-Type: application/json
+
+{
+    "problem": "Moshe3",
+    "status": "Updated",
+    "assignedTo": "cr"
+}
+
+###
+
+DELETE http://localhost:3001/api/users/62bdccdcff7427133145b65f
+
+###
+
+GET http://localhost:3001/api/customers/search/0504206262
+
+
+
+###
+
+POST http://localhost:3001/api/customers/
+Content-Type: application/json
+
+{
+    "name": "M1221",
+    "phone": "122234"
+    
+}
+
+###
+
+
+GET http://localhost:3001/api/users
+###
+
+POST http://localhost:3001/upload
+Content-Type: application/json
+
+{
+    "name": "Carrot",
+    "email": "bla",
+    "message": "Not a Fruit"
+}
+
+###
+
+DELETE http://localhost:3001/api/message/5fba4ab559003a0c88bbd503
+
+###
+
+PUT http://localhost:3001/api/message/62bb2a24d7fa4401b7a18819
+Content-Type: application/json
+
+{
+   "name": "Carrot",
+    "email": "bla",
+    "message": "Not a Fruit"
+}
+
+###
+
+POST http://localhost:3001/api/users/tokenIsValid
