@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const ticketsSchema = require("../models/ticketModel");
 
 const customersSchema = mongoose.Schema({
   name: {
@@ -17,19 +18,13 @@ const customersSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  problem: {
-    type: String,
-  },
-  assignedTo: {
-    type: String,
-    default: "cr",
-    enum: ["cr", "Phone", "PC", "BuildPc"],
-  },
-  status: {
-    type: String,
-    default: "open",
-    enum: ["open", "Updated", "Answered", "Closed"],
-  },
+  ticketsSchema:[
+    {
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'ticketsSchema'
+    }
+  ]
+
 });
 
 module.exports = mongoose.model("Customer", customersSchema);

@@ -18,11 +18,11 @@ const ticketsSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  customer: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: [true, "ticket has to be linked to a customer."],
-      ref: "Customer",
-    },
+  // customer: {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     required: [true, "ticket has to be linked to a customer."],
+  //     ref: "Customer",
+  //   },
 });
 
 module.exports = mongoose.model("ticket", ticketsSchema);

@@ -3,8 +3,6 @@ const router = express.Router();
 const mongoose = require("mongoose");
 let ticketsSchema = require("../models/ticketModel");
 
-
-
 router.get("/", (req, res) => {
   ticketsSchema
     .find()
@@ -21,12 +19,11 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   const newTicket = new ticketsSchema({
-    
     date: req.body.date,
     problem: req.body.problem,
     status: req.body.status,
     assignedTo: req.body.assignedTo,
-    customer: req.body.customer
+    customer: req.body.customer,
   });
 
   newTicket
@@ -50,15 +47,15 @@ router.put("/:id", (req, res) => {
 });
 
 //find
-router.get("/search/:key",async(req, res)=>{
-  
+router.get("/search/:key", async (req, res) => {
   let data = await ticketsSchema.find({
-    "$or":[
-      {email:{$regex:req.params.key}},
-      {phone:{$regex:req.params.key}}
-    ]
-  })
-  res.send(data)
-})
+    $or: [
+     // { assignedTo: { $regex: req.params.key } },
+     // { phone: { $regex: req.params.key } },
+      { status: { $regex: req.params.key } },
+    ],
+  });
+  res.send(data);
+});
 
 module.exports = router;

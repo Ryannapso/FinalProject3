@@ -3,8 +3,6 @@ const router = express.Router();
 const mongoose = require("mongoose");
 let customersSchema = require("../models/customers");
 
-
-
 router.get("/", (req, res) => {
   customersSchema
     .find()
@@ -52,15 +50,14 @@ router.put("/:id", (req, res) => {
 });
 
 //find
-router.get("/:key",async(req, res)=>{
-  
+router.get("/search/:key", async (req, res) => {
   let data = await customersSchema.find({
-    "$or":[
-     // {email:{$regex:req.params.key}},
-      {phone:{$regex:req.params.key}}
-    ]
-  })
-  res.send(data)
-})
+    $or: [
+      { name: { $regex: req.params.key } },
+      { phone: { $regex: req.params.key } },
+    ],
+  });
+  res.send(data);
+});
 
 module.exports = router;
