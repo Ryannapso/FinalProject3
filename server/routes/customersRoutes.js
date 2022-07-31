@@ -1,13 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-let customersSchema = require("../models/customers");
+let customersSchema = require("../models/customerModel");
 
-
-
-router.get("/:name", (req, res) => {
+router.get("/", (req, res) => {
   customersSchema
-    .find({ name: req.params.name }).populate('tickets')
+    .find()
     .then((customer) => res.json(customer))
     .catch((err) => res.status(400).json("Error: " + err));
 });
@@ -25,7 +23,6 @@ router.post("/", (req, res) => {
     email: req.body.email,
     phone: req.body.phone,
     address: req.body.address,
-    UserDate: req.body.UserDate,
   });
 
   newCustomer
@@ -49,10 +46,14 @@ router.put("/:id", (req, res) => {
 });
 
 //find
-router.get("/search/:key",async(req, res)=>{
-  
-  let data = await customersSchema.find({name: req.params.key})
-  res.send(data)
-})
+router.get("/search/:key", async (req, res) => {
+  let data = await customersSchema.find({
+    $or: [
+      { name: { $regex: req.params.key } },
+      { phone: { $regex: req.params.key } },
+    ],
+  });
+  res.send(data);
+});
 
 module.exports = router;

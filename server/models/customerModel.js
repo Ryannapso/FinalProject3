@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const customersSchema = mongoose.Schema({
   name: {
     type: String,
@@ -13,14 +12,14 @@ const customersSchema = mongoose.Schema({
   address: {
     type: String,
   },
-  UserDate: {
-    type: Date,
-    default: Date.now,
-  },
   tickets: [{
-     type: mongoose.Schema.Types.ObjectId,
-      ref: "Ticket",
-  }]
-});
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Ticket"
+    }],
+},
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("Customer", customersSchema);

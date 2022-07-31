@@ -27,7 +27,7 @@ DELETE http://localhost:3001/api/users/62bdccdcff7427133145b65f
 
 ###
 
-GET http://localhost:3001/api/customers/search/0504206262
+GET http://localhost:3001/api/customers/search/0
 
 
 

@@ -14,14 +14,17 @@ const ticketsSchema = mongoose.Schema({
     default: "open",
     enum: ["open", "Updated", "Answered", "Closed"],
   },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-  customer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Customer"
+  customerName: {
+      type: String
+    },
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Customer",
+    },
+},
+  {
+    timestamps: true,
   }
-});
+);
 
 module.exports = mongoose.model("Ticket", ticketsSchema);

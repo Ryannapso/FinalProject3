@@ -1,73 +1,68 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-let ticketsSchema = require("../models/ticketModel");
-const Customer = require("../models/customers")
+const Ticket = require('../models/ticketModel')
+const Customer = require('../models/customerModel')
 
 router.get("/", (req, res) => {
-  ticketsSchema
+  Ticket
     .find()
     .then((ticket) => res.json(ticket))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.get("/search", (req, res) => {
-  ticketsSchema
-    .find({ customer: "M1221" })
+  Ticket
+    .find({})
   .then((ticket) => res.json(ticket))
     .catch((err) => res.status(400).json("Error: " + err));
 })
 
 router.get("/:id", (req, res) => {
-  ticketsSchema
+  Ticket
     .findById(req.params.id)
     .then((ticket) => res.json(ticket))
     .catch((err) => res.json("Error: +err"));
 });
 
-router.post("/", (req, res) => {
-  const newTicket = new ticketsSchema({
-    
-    date: req.body.date,
+router.post("/", async (req, res) => {
+  const ticket = await Ticket.create({
     problem: req.body.problem,
+    assignedTo: req.body.assignedTo, 
     status: req.body.status,
-    assignedTo: req.body.assignedTo,
-  });
+    customerName: req.body.customerName
+  })
 
-  newTicket
-    .save()
-    .then((result) => Customer.findById("62e53c81cdd5a63fdcdf00d8", (err, customer) => {
-      if (customer) {
-        res.json({message: "Ticker Created !"})
-      }
-    }))
-    .catch((err) => res.status(400).json("Error: " + err));
+  const customer = await Customer.findOne({ name: ticket.customerName })
+  
+  customer.tickets.push(ticket._id)
+  customer.save();
+  res.status(200).json(ticket);
 });
 
 router.delete("/:id", (req, res) => {
-  ticketsSchema
+  Ticket
     .findByIdAndDelete(req.params.id)
     .then(() => res.json("ticket deleted"))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.put("/:id", (req, res) => {
-  ticketsSchema
+  Ticket
     .findByIdAndUpdate(req.params.id, { $set: req.body })
     .then(() => res.json("ticketsSchema updated"))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
 //find
-router.get("/search/:key",async(req, res)=>{
-  
-  let data = await ticketsSchema.find({
-    "$or":[
-      {email:{$regex:req.params.key}},
-      {phone:{$regex:req.params.key}}
-    ]
-  })
-  res.send(data)
-})
+router.get("/search/:key", async (req, res) => {
+  let data = await Ticket.find({
+    $or: [
+     // { assignedTo: { $regex: req.params.key } },
+     // { phone: { $regex: req.params.key } },
+      { status: { $regex: req.params.key } },
+    ],
+  });
+  res.send(data);
+});
 
 module.exports = router;
