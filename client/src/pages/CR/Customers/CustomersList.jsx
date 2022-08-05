@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useLinkClickHandler } from "react-router-dom";
-import { Table, Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Table, Button } from "react-bootstrap";
+import SingleCustomer from './SingleCustomer'
 
 
-const CustomerList = () => {
+function CustomerList()  {
+  let counter = 0;
+
   const [customersSchema, setCustomers] = useState([]);
 
   useEffect(() => {
@@ -13,7 +16,7 @@ const CustomerList = () => {
       .then((response) => setCustomers(response.data));
   }, []);
 
-  return (
+  return <>
     <div>
       <h2> there are {customersSchema.length} post in the Database </h2>
       <Table striped bordered hover size="sm">
@@ -23,37 +26,38 @@ const CustomerList = () => {
             <th>email</th>
             <th>phone</th>
             <th>address</th>
-            <th>UserDate</th>
-            <th>problem</th>
-            <th>assignedTo</th>
-            <th>status</th>
-            
-           
+            <th>tickets</th>
           </tr>
         </thead>
         <tbody>
-          {customersSchema.map((customer) => {
+          {customersSchema.map((item) => {
             return (
               <tr>
-                <td>{customer.name}</td>
-                <td>{customer.email}</td>
-                <td>{customer.phone}</td>
-                <td>{customer.address}</td>
-                <td>{customer.UserDate}</td>
-                <td>{customer.problem}</td>
-                <td>{customer.assignedTo}</td>
-                <td>{customer.status}</td>
-                <Link key={customer._id} to={`/updateMsg2/${customer._id}`}>
+                <td>
+                <SingleCustomer
+                  customer={item}
+                ></SingleCustomer>
+              </td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>{item.address}</td>
+                {item.tickets.forEach(element => {
+                if (element.status === 'open') {
+                  counter++
+                }
+              })}
+              <td>{counter}</td>
+                {counter = 0}
+                <Link key={item._id} to={`/updateMsg2/${item._id}`}>
                   <Button> Update</Button>
                 </Link>
-             
               </tr>
-            );
+            )
           })}
         </tbody>
       </Table>
     </div>
-  );
+  </>
 };
 
 export default CustomerList;

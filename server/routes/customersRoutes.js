@@ -3,9 +3,9 @@ const router = express.Router();
 const mongoose = require("mongoose");
 let customersSchema = require("../models/customerModel");
 
-router.get("/", (req, res) => {
-  customersSchema
-    .find()
+router.get("/", async (req, res) => {
+  await customersSchema
+    .find().populate('tickets')
     .then((customer) => res.json(customer))
     .catch((err) => res.status(400).json("Error: " + err));
 });

@@ -3,8 +3,8 @@ const router = express.Router();
 const Ticket = require('../models/ticketModel')
 const Customer = require('../models/customerModel')
 
-router.get("/", (req, res) => {
-  Ticket
+router.get("/", async (req, res) => {
+  await Ticket
     .find()
     .then((ticket) => res.json(ticket))
     .catch((err) => res.status(400).json("Error: " + err));
