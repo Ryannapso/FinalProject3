@@ -1,9 +1,11 @@
-import React from 'react'
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import { useState } from 'react'
-import Table from 'react-bootstrap/Table';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { useState } from "react";
+import Table from "react-bootstrap/Table";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navigate, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SingleCustomer(props) {
   const [show, setShow] = useState(false);
@@ -26,27 +28,38 @@ function SingleCustomer(props) {
           <p>Address: {props.customer.address}</p>
           <p>Tickets: </p>
           <Table striped bordered hover variant="dark">
-                <thead>
+            <thead>
+              <tr>
+                <th>problem</th>
+                <th>status</th>
+                <th>assignedTo</th>
+                <th>Open Ticket</th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.customer.tickets.map((test) => {
+                return (
                   <tr>
-                    <th>problem</th>
-                    <th>status</th>   
+                    <td>{test.problem}</td>
+                    <td>{test.status}</td>
+                    <td>{test.assignedTo}</td>
+                    <td>
+                      <Link
+                        key={test._id}
+                        to={`/serviceCall/updateTicket/${test._id}`}
+                      >
+                        Open Ticket
+                      </Link>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {props.customer.tickets.map((test) => {
-                    return (
-                      <tr>
-                        <td>{test.problem}</td>
-                        <td>{test.status}</td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </Table>
+                );
+              })}
+            </tbody>
+          </Table>
         </Offcanvas.Body>
       </Offcanvas>
     </>
   );
 }
 
-export default SingleCustomer
+export default SingleCustomer;

@@ -7,21 +7,19 @@ const NewCustomer = () => {
   const [email, setEmail] = useState("");
   const [phone, SetPhone] = useState("");
   const [address, setAddress] = useState("");
-  //const [UserDate, setUserDate] = useState("");
-  const [problem, setProblem] = useState("");
-  const [assignedTo, setAssignedTo] = useState("");
-  const [status, setStatus] = useState("");
+  const [timestamps, SetTimestamps] = useState("");
+  // const [problem, setProblem] = useState("");
+  // const [assignedTo, setAssignedTo] = useState("");
+  // const [status, setStatus] = useState("");
 
   const addToList = () => {
     Axios.post("http://localhost:3001/api/customers", {
       name: name,
       email: email,
       address: address,
-      //UserDate: UserDate,
+      timestamps: timestamps,
       phone: phone,
-      problem: problem,
-      assignedTo: assignedTo,
-      status: status,
+     
     });
   };
   //end of post
@@ -34,7 +32,7 @@ const NewCustomer = () => {
             <div className="col-12">
               <h3 className="fs-5 text-center mb-0">Service call</h3>
               <h1 className="display-6 text-center mb-4">
-                new <b>Ticket</b>
+                new <b>Customer</b>
               </h1>
               <hr className="w-25 mx-auto" />
             </div>
@@ -47,7 +45,7 @@ const NewCustomer = () => {
               <form>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                    Your Name
+                  Customer Name
                   </label>
                   <input
                     required
@@ -64,7 +62,7 @@ const NewCustomer = () => {
 
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                    phone
+                  Customer phone
                   </label>
                   <input
                     required
@@ -113,72 +111,14 @@ const NewCustomer = () => {
                     }}
                   />
                 </div>
-                <div className="mb-3">
-                  <label
-                    htmlFor="exampleFormControlTextarea1"
-                    className="form-label"
-                  >
-                    problem
-                  </label>
-                  <textarea
-                    required
-                    className="form-control"
-                    id="exampleFormControlTextarea1"
-                    rows="5"
-                    name="message"
-                    onChange={(event) => {
-                      setProblem(event.target.value);
-                    }}
-                  ></textarea>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
-                    assignedTo
-                  </label>
-                  <select
-                    required
-                    type="text"
-                    className="form-control"
-                    id="assignedTo"
-                    placeholder="assignedTo"
-                    name="name"
-                    onChange={(event) => {
-                      setAssignedTo(event.target.value);
-                    }}
-                  >
-                    <option value="cr">cr</option>
-                    <option value="Phone">Phone</option>
-                    <option value="PC">PC</option>
-                    <option value="BuildPc">BuildPc</option>
-                  </select>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
-                    status
-                  </label>
-                  <select
-                    required
-                    type="text"
-                    className="form-control"
-                    id="status"
-                    // placeholder="status"
-                    name="status"
-                    onChange={(event) => {
-                      setStatus(event.target.value);
-                    }}
-                  >
-                    <option value="open">open</option>
-                    <option value="Updated">Updated</option>
-                    <option value="Answered">Answered</option>
-                    <option value="Closed">Closed</option>
-                  </select>
-                </div>
+           
+                
                 <button
                   type="submit"
                   className="btn btn-outline-primary rounded-pill px-4"
                   onClick={addToList}
                 >
-                  Send Message <i className="fa fa-paper-plane ms-2"></i>
+                  Open New Customer <i className="fa fa-paper-plane ms-2"></i>
                 </button>
               </form>
             </div>

@@ -7,6 +7,7 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [message, SetMessage] = useState("");
   const [phone, setPhone] = useState("");
+ 
 
   const addToList = () => {
     Axios.post("http://localhost:3001/api/message", {
@@ -55,7 +56,7 @@ const Contact = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                    Your Name
+                    Your Phone
                   </label>
                   <input
                     required

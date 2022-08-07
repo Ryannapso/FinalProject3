@@ -6,14 +6,14 @@ const NewTicket = () => {
   const [problem, setProblem] = useState("");
   const [status, setStatus] = useState("");
   const [assignedTo, SetAssignedTo] = useState("");
-  const [customerName, setCustomerName] = useState('')
+  const [customerPhone, setCustomerPhone] = useState('')
 
   const addToList = () => {
     Axios.post("http://localhost:3001/api/tickets", {
       problem: problem,
       status: status,
       assignedTo: assignedTo,
-      customerName: customerName
+      customerPhone: customerPhone
     });
   };
   //end of post
@@ -64,15 +64,15 @@ const NewTicket = () => {
                     htmlFor="exampleFormControlTextarea1"
                     className="form-label"
                   >
-                    Customer Name:
+                    phone number:
                   </label>
                   <input
                     required
                     className="form-control"
                     id="exampleFormControlTextarea1"
-                    name="customerName"
+                    name="phone number"
                     onChange={(event) => {
-                      setCustomerName(event.target.value);
+                      setCustomerPhone(event.target.value);
                     }}
                   ></input>
                 </div>

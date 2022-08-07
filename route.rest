@@ -2,7 +2,7 @@ GET http://localhost:3001/api/users/62c186e59ccfa34ba7b5b4a1
 
 ###
 
-GET http://localhost:3001/api/tickets
+GET http://localhost:3001/api/customers
 
 
 ###
@@ -12,13 +12,17 @@ auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmRhMmE4NGU2NWRlMjE
 
 ###
 
-POST http://localhost:3001/api/tickets
+POST http://localhost:3001/api/users/register/admin
 Content-Type: application/json
 
 {
-    "problem": "Moshe3",
-    "status": "Updated",
-    "assignedTo": "cr"
+    "name": "Moshe22222",
+    "email": "moshe221@gmail.com",
+    "password": "1234",
+    "phone": "05222262",
+    "location": "tevria",
+    "role": "admin"
+
 }
 
 ###
@@ -33,28 +37,31 @@ GET http://localhost:3001/api/customers/search/0
 
 ###
 
-POST http://localhost:3001/api/customers/
+POST http://localhost:3001/api/tickets/
 Content-Type: application/json
 
 {
-    "name": "M1221",
-    "phone": "122234"
+    "problem": "my phone broken",
+    "assignedTo": "Phone",
+    "status":"open",
+    "customerPhone":"0504206262"
     
 }
 
 ###
 
 
-GET http://localhost:3001/api/users
+GET http://localhost:3001/api/customers
 ###
 
-POST http://localhost:3001/upload
+POST http://localhost:3001/api/customers
 Content-Type: application/json
 
 {
-    "name": "Carrot",
-    "email": "bla",
-    "message": "Not a Fruit"
+    "name": "moshe maman",
+    "email": "moshem@maman",
+    "phone": "0504206262",
+    "address":"tevria"
 }
 
 ###

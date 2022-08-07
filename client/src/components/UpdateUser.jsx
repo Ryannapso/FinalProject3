@@ -16,7 +16,10 @@ const UpdateUser = ({ match }) => {
     email: "",
     date: "",
     role: "",
-    //image:""
+    password:"",
+    Lname:"",
+    phone:"",
+    location:"",
   });
 
   useEffect(() => {
@@ -75,7 +78,7 @@ const UpdateUser = ({ match }) => {
               <form>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                    Your Name
+                    Name
                   </label>
                   <input
                     required
@@ -90,16 +93,16 @@ const UpdateUser = ({ match }) => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                    Role
+                    Last Name
                   </label>
                   <input
                     required
                     type="text"
                     className="form-control"
-                    id="role"
+                    id="Lname"
                     placeholder="John Smith"
-                    name="role"
-                    value={user.role}
+                    name="Lname"
+                    value={user.Lname}
                     onChange={handleChange}
                   />
                 </div>
@@ -121,33 +124,74 @@ const UpdateUser = ({ match }) => {
                     onChange={handleChange}
                   />
                 </div>
-                {/* <div className="mb-3">
-                  <label
-                    htmlFor="exampleFormControlInput1"
-                    className="form-label"
-                  >
-                    Email address
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">
+                    Password
                   </label>
-                  <FileBase64 
-                 
+                  <input
                     required
-                    type="file"
-                    multiple={false}
+                    type="text"
                     className="form-control"
-                    id="exampleFormControlInput1"
-                    placeholder="name@example.com"
-                    name="img"
-                    value={user.image}
-                   // onChange={handleChange}
-                   
-                  
+                    id="password"
+                    placeholder="John Smith"
+                    name="password"
+                    value={user.password}
+                    onChange={handleChange}
                   />
-                </div> */}
-                {/* <FileBase64
-          type="file"
-          multiple={false}
-          onDone={({ base64 }) => handleChange({ image: base64 })}
-        /> */}
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">
+                  phone
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    id="phone"
+                    placeholder="John Smith"
+                    name="phone"
+                    value={user.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">
+                  location
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    className="form-control"
+                    id="location"
+                    placeholder="John Smith"
+                    name="location"
+                    value={user.location}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">
+                  role
+                  </label>
+                  <select
+                    required
+                    type="text"
+                    className="form-control"
+                    id="role"
+                    placeholder="John Smith"
+                    name="role"
+                    value={user.role}
+                    onChange={handleChange}
+                  >
+                         <option value=""></option>
+                    <option value="user">user</option>
+                    <option value="cr">cr</option>
+                    <option value="tech">tech</option>
+                    <option value="admin">admin</option>
+                  </select>
+                </div>
+                
+            
                 <div className="buttons d-flex justify-content-center p-1">
                   <button
                     type="submit"

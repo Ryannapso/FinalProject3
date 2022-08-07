@@ -14,9 +14,14 @@ const ticketsSchema = mongoose.Schema({
     default: "open",
     enum: ["open", "Updated", "Answered", "Closed"],
   },
-  customerName: {
+  customerPhone: {
       type: String
     },
+    date: {
+      type: Date,
+      default: Date.now,
+    },
+   
     customer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Customer",

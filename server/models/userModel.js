@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
   },
   phone: {
     type: String,
-    //required: true,
+    required: true,
     maxlength: 10,
   },
   location: {
@@ -43,11 +43,11 @@ const userSchema = mongoose.Schema({
     default: "user",
     enum: ["admin", "cr", "tech", "user"],
   },
-  status: {
-    type: String,
-    default: "Open",
-    enum: ["Open", "Updated", "PC", "phone", "buildPc", "Admin", "Closed"],
-  },
+  // status: {
+  //   type: String,
+  //   default: "Open",
+  //   enum: ["Open", "Updated", "PC", "phone", "buildPc", "Admin", "Closed"],
+  // },
 });
 
 module.exports = mongoose.model("User", userSchema);

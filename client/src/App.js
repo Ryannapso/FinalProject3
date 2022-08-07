@@ -16,7 +16,7 @@ import MessageList2 from "./components/MessageList2";
 import Profile from "./components/auth/Profile";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import UserList from "./components/UserList";
+
 import UpdateUser from "./components/UpdateUser";
 
 //cr
@@ -34,9 +34,11 @@ import BuildPc from "./pages/Lab/BuildPc";
 import Pc from "./pages/Lab/Pc";
 import Phone from "./pages/Lab/Phone";
 //admin
-import EmployeesList from "./pages/Admin/EmployeesList";
+import EmployeesList from "./pages/Admin/UserList";
+import NewEmployees from "./pages/Admin/NewEmployees.jsx";
 import MainPageMessages from "./pages/Admin/MainPageMessages";
 import Reports from "./pages/Admin/Reports";
+import UserList from "./pages/Admin/UserList";
 
 //import Header from "./test/Header";
 
@@ -89,7 +91,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/messageList2" element={<MessageList2 />} />
-          <Route path="/userList" element={<UserList />} />
+          {/* <Route path="/userList" element={<UserList />} /> */}
           <Route path="/updateUser/:id" element={<UpdateUser />} />
           <Route path="/updateMsg2/:id" element={<UpdateMsg2 />} />
           <Route path="/register" element={<Register />} />
@@ -104,7 +106,10 @@ function App() {
           <Route path="/searchCustomer2" element={<SearchCustomer2 />} />
           <Route path="/serviceCall/closeTicket" element={<CloseTicket />} />
           <Route path="/serviceCall/newTicket" element={<NewTicket />} />
-          <Route path="/serviceCall/updateTicket" element={<UpdateTicket />} />
+          <Route
+            path="/serviceCall/updateTicket/:id"
+            element={<UpdateTicket />}
+          />
           <Route path="/serviceCall/ticketList" element={<TicketList />} />
           {/* Lab */}
           <Route path="/lab/buildPc" element={<BuildPc />} />
@@ -112,12 +117,13 @@ function App() {
           <Route path="/lab/phone" element={<Phone />} />
 
           {/* Admin */}
-          <Route path="/admin/employeesList" element={<EmployeesList />} />
+          <Route path="/admin/userList" element={<UserList />} />
           <Route
             path="/admin/mainPageMessages"
             element={<MainPageMessages />}
           />
           <Route path="/admin/reports" element={<Reports />} />
+          <Route path="/admin/NewEmployees" element={<NewEmployees />} />
         </Routes>
         <Footer />
       </UserContext.Provider>

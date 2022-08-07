@@ -5,17 +5,6 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const auth = require("../middleware/auth");
 
-//test upload image
-const Storage = multer.diskStorage({
-  destination: "upload",
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({ storage: Storage }).single("testImage");
-
-//const auth = require("../middleware/auth");
-
 //register-----------------------------------------------------
 router.get("/register", auth, (req, res) => {
   User.find()
@@ -178,6 +167,23 @@ router.delete("/update/:id", (req, res) => {});
 router.put("/update/:id", (req, res) => {
   User.findByIdAndUpdate(req.params.id, { $set: req.body })
     .then(() => res.json("UserSchema updated"))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.post("/register/admin", (req, res) => {
+  const newUser = new User({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    Lname: req.body.Lname,
+    phone: req.body.phone,
+    location: req.body.location,
+    role: req.body.role,
+  });
+
+  newUser
+    .save()
+    .then((user) => res.json("New UserAdded"))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
