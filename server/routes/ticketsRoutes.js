@@ -9,11 +9,11 @@ router.get("/", async (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.get("/search", (req, res) => {
-  Ticket.find({})
-    .then((ticket) => res.json(ticket))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
+// router.get("/search", (req, res) => {
+//   Ticket.find({})
+//     .then((ticket) => res.json(ticket))
+//     .catch((err) => res.status(400).json("Error: " + err));
+// });
 
 router.get("/:id", (req, res) => {
   Ticket.findById(req.params.id)
@@ -28,12 +28,17 @@ router.post("/", async (req, res) => {
     status: req.body.status,
     customerPhone: req.body.customerPhone,
   });
+  try {
 
-  const customer = await Customer.findOne({ phone: ticket.customerPhone });
+    const customer = await Customer.findOne({ phone: ticket.customerPhone });
+    customer.tickets.push(ticket._id);
+    customer.save();
+    res.status(200).json(ticket);
+  } catch (error) {
+    console.log("no such user");
+  }
 
-  customer.tickets.push(ticket._id);
-  customer.save();
-  res.status(200).json(ticket);
+
 });
 
 router.delete("/:id", (req, res) => {
@@ -48,16 +53,16 @@ router.put("/:id", (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-//find
-router.get("/search/:key", async (req, res) => {
-  let data = await Ticket.find({
-    $or: [
-      // { assignedTo: { $regex: req.params.key } },
-      // { phone: { $regex: req.params.key } },
-      { status: { $regex: req.params.key } },
-    ],
-  });
-  res.send(data);
-});
+// //find
+// router.get("/search/:key", async (req, res) => {
+//   let data = await Ticket.find({
+//     $or: [
+//       // { assignedTo: { $regex: req.params.key } },
+//       // { phone: { $regex: req.params.key } },
+//       { status: { $regex: req.params.key } },
+//     ],
+//   });
+//   res.send(data);
+// });
 
 module.exports = router;

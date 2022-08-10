@@ -20,7 +20,9 @@ const Phone = () => {
   });
 
   const idFormatter = (data, row) => {
-    return <Link to={`/serviceCall/updateTicket/${data}`}>{data}</Link>;
+    return <Link to={`/serviceCall/updateTicket/${data}`}><Button variant="primary">
+    Edit Ticket
+  </Button></Link>;
   };
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
@@ -32,8 +34,7 @@ const Phone = () => {
     {
       dataField: "_id",
       text: "Id",
-      formatter: idFormatter,
-      style: { backgroundColor: "yellow" },
+   
     },
     { dataField: "date", text: "date", sort: true, filter: textFilter() },
     {

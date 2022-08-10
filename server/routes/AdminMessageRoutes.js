@@ -5,8 +5,8 @@ let AdminMessageSchema = require("../models/AdminMessageModel");
 
 
 
-router.get("/", (req, res) => {
-  AdminMessageSchema
+router.get("/", async(req, res) => {
+ await AdminMessageSchema
     .find()
     .then((msgs) => res.json(msgs))
     .catch((err) => res.status(400).json("Error: " + err));

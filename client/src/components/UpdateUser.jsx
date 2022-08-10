@@ -33,7 +33,7 @@ const UpdateUser = ({ match }) => {
       .put("http://localhost:3001/api/users/update/" + id, user)
       .then((user) => console.log(user));
     alert("user updated");
-    navigate("/userList");
+    navigate("/admin/userList");
   };
 
   const userDelete = () => {
@@ -41,7 +41,7 @@ const UpdateUser = ({ match }) => {
       .delete("http://localhost:3001/api/users/" + id)
       .then((res) => console.log(res.status));
     alert("user deleted");
-    navigate("/userList");
+    navigate("/admin/userList");
   };
 
   const handleChange = (e) => {

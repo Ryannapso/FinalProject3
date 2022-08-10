@@ -12,7 +12,6 @@ import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css";
 
-
 const NewAdminMessage = () => {
   //post
   const [title, setTitle] = useState("");
@@ -31,13 +30,13 @@ const NewAdminMessage = () => {
   //end of post
   const [data, setData] = useState([]);
   useEffect(() => {
-    Axios
-      .get("http://localhost:3001/api/AdminMessage")
-      .then((res) => setData(res.data));
+    Axios.get("http://localhost:3001/api/AdminMessage").then((res) =>
+      setData(res.data)
+    );
   });
 
   const idFormatter = (data, row) => {
-    return <Link to={`/updateMsg2/${data}`}>{data}</Link>;
+    return <Link to={`/admin/updateAdminMessage/${data}`}>{data}</Link>;
   };
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
@@ -91,13 +90,11 @@ const NewAdminMessage = () => {
     },
   });
 
- 
-
-//   useEffect(() => {
-//     Axios
-//       .get("http://localhost:3001/api/message")
-//       .then((res) => setData(res.data));
-//   });
+  //   useEffect(() => {
+  //     Axios
+  //       .get("http://localhost:3001/api/message")
+  //       .then((res) => setData(res.data));
+  //   });
 
   return (
     <div>
@@ -157,7 +154,7 @@ const NewAdminMessage = () => {
                   >
                     Type
                   </label>
-                  <input
+                  <select
                     required
                     type="text"
                     className="form-control"
@@ -167,7 +164,11 @@ const NewAdminMessage = () => {
                     onChange={(event) => {
                       SetType(event.target.value);
                     }}
-                  ></input>
+                  >
+                    <option value="success">success-green</option>
+                    <option value="danger">danger-red</option>
+                    <option value="warning">warning-yellow</option>
+                  </select>
                 </div>
 
                 <button
@@ -182,7 +183,7 @@ const NewAdminMessage = () => {
           </div>
         </div>
       </section>
-      
+                      <h1>Message List</h1>
       <BootstrapTable
         bootstrap4
         keyField="id"

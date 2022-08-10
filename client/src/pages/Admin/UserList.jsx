@@ -23,7 +23,9 @@ const UserList = () => {
   // const [customersSchema, setCustomers] = useState([]);
 
   const idFormatter = (data, row) => {
-    return <Link to={`/updateUser/${data}`}>{data}</Link>;
+    return <Link to={`/updateUser/${data}`}><Button variant="primary">
+    Update User
+  </Button></Link>;
   };
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
@@ -37,7 +39,7 @@ const UserList = () => {
       dataField: "_id",
       text: "Id",
       formatter: idFormatter,
-      style: { backgroundColor: "yellow" },
+   
     },
     { dataField: "name", text: "name", sort: true, filter: textFilter() },
     { dataField: "Lname", text: "Last name", sort: true, filter: textFilter() },

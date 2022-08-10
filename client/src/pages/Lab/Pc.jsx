@@ -23,7 +23,9 @@ const Pc = () => {
   // const [customersSchema, setCustomers] = useState([]);
 
   const idFormatter = (data, row) => {
-    return <Link to={`/serviceCall/updateTicket/${data}`}>{data}</Link>;
+    return <Link to={`/serviceCall/updateTicket/${data}`}><Button variant="primary">
+    Edit Ticket
+  </Button></Link>;
   };
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
@@ -37,7 +39,7 @@ const Pc = () => {
       dataField: "_id",
       text: "Id",
       formatter: idFormatter,
-      style: { backgroundColor: "yellow" },
+     
     },
     { dataField: "date", text: "date", sort: true, filter: textFilter() },
     {

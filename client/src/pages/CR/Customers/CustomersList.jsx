@@ -30,7 +30,11 @@ function CustomerList() {
       .then((res) => setData(res.data));
   });
   const idFormatter = (data, row) => {
-    return <Link to={`/serviceCall/updateTicket/${data}`}>{data}</Link>;
+    return (
+      <Link to={`/serviceCall/updateCustomer/${data}`}>
+        <Button variant="primary">Edit Customer</Button>
+      </Link>
+    );
   };
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
@@ -38,7 +42,7 @@ function CustomerList() {
     }
   };
   const SingleCustomerFormatter = (data, row) => {
-    return <Link to={`/serviceCall/updateTicket/${data}`}>{data}</Link>;
+    return <Link to={`/serviceCall/updateCustomer/${data}`}>{data}</Link>;
   };
 
   //make table using
@@ -47,7 +51,7 @@ function CustomerList() {
       dataField: "_id",
       text: "Id",
       formatter: idFormatter,
-      style: { backgroundColor: "yellow" },
+      
     },
     { dataField: "date", text: "date", sort: true, filter: textFilter() },
     {

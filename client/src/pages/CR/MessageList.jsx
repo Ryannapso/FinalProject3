@@ -21,7 +21,6 @@ const MessageList = () => {
   //     .then((response) => setMsgs(response.data));
   // }, []);
 
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -31,8 +30,11 @@ const MessageList = () => {
   });
 
   const idFormatter = (data, row) => {
-    return <Link to={`/updateMsg2/${data}`}>{data}</Link>;
-
+    return (
+      <Link to={`/updateMsg2/${data}`}>
+        <Button variant="primary">Edit Message</Button>
+      </Link>
+    );
   };
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
@@ -45,7 +47,7 @@ const MessageList = () => {
       dataField: "_id",
       text: "Id",
       formatter: idFormatter,
-      style: { backgroundColor: "yellow" },
+     
     },
     { dataField: "date", text: "date", sort: true, filter: textFilter() },
     {
@@ -75,7 +77,7 @@ const MessageList = () => {
       filter: textFilter({ defaultValue: "" }),
     },
   ];
-  
+
   //set pages
   const pagination = paginationFactory({
     page: 1,
@@ -98,7 +100,7 @@ const MessageList = () => {
 
   return (
     <div>
-          <BootstrapTable
+      <BootstrapTable
         bootstrap4
         keyField="id"
         columns={columns}

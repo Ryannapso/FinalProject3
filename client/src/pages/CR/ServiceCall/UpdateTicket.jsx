@@ -1,11 +1,11 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-//fruit = ticket  ticket
 const UpdateTicket = ({ match }) => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
   const [ticket, setTicket] = useState({
@@ -26,7 +26,8 @@ const UpdateTicket = ({ match }) => {
     axios
       .put("http://localhost:3001/api/tickets/" + id, ticket)
       .then((ticket) => console.log(ticket));
-    window.location = "/customersList";
+    alert("ticket updated");
+    navigate("/serviceCall/ticketList");
   };
 
   const ticketDelete = () => {
@@ -34,7 +35,7 @@ const UpdateTicket = ({ match }) => {
       .delete("http://localhost:3001/api/tickets/" + id)
       .then((res) => console.log(res.status));
     alert("ticket deleted");
-    window.location = "/customersList";
+    navigate("/serviceCall/ticketList");
   };
 
   const handleChange = (e) => {
@@ -49,14 +50,12 @@ const UpdateTicket = ({ match }) => {
 
   return (
     <div>
-<h1>test</h1>
-
       <section id="contact">
         <div className="container my-5 py-5">
           <div className="row mb-5">
             <div className="col-12">
               <h1 className="display-6 text-center mb-4">
-                <b>Update </b> or <b>Delete</b>
+                <b>Update Ticket </b>
               </h1>
               <hr className="w-25 mx-auto" />
             </div>
@@ -67,7 +66,7 @@ const UpdateTicket = ({ match }) => {
             </div>
             <div className="col-md-6">
               <form>
-              <div className="mb-3">
+                <div className="mb-3">
                   <label htmlFor="name" className="form-label">
                     id
                   </label>
@@ -83,7 +82,7 @@ const UpdateTicket = ({ match }) => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                  problem
+                    problem
                   </label>
                   <input
                     required
@@ -97,7 +96,7 @@ const UpdateTicket = ({ match }) => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                  assignedTo
+                    assignedTo
                   </label>
                   <input
                     required
@@ -110,10 +109,10 @@ const UpdateTicket = ({ match }) => {
                     onChange={handleChange}
                   />
                 </div>
-          
+
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                  customerPhone
+                    customerPhone
                   </label>
                   <input
                     required
@@ -126,7 +125,7 @@ const UpdateTicket = ({ match }) => {
                     onChange={handleChange}
                   />
                 </div>
-             
+
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
                     Ticket Status
@@ -153,16 +152,16 @@ const UpdateTicket = ({ match }) => {
                     className="btn btn-outline-primary rounded-pill px-4"
                     onClick={ticketUpdate}
                   >
-                    Update Message <i className="fa fa-paper-plane ms-6"></i>
+                    Update Ticket <i className="fa fa-pencil-square-o ms-6"></i>
                   </button>
-                  <button
+                  {/* <button
                     type="submit"
                     className="btn btn-outline-danger rounded-pill px-5 ms-5"
                     onClick={ticketDelete}
                   >
                     Delete Message
                     <i className="fa fa-trash  aria-hidden=true" ms-4></i>
-                  </button>
+                  </button> */}
                 </div>
               </form>
             </div>
@@ -173,7 +172,4 @@ const UpdateTicket = ({ match }) => {
   );
 };
 
-
-
-export default UpdateTicket
-
+export default UpdateTicket;

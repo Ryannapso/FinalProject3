@@ -19,7 +19,9 @@ const TicketList = () => {
       .then((res) => setData(res.data));
   });
   const idFormatter = (data, row) => {
-    return <Link to={`/serviceCall/updateTicket/${data}`}>{data}</Link>;
+    return <Link to={`/serviceCall/updateTicket/${data}`}><Button variant="primary">
+    Edit Ticket
+  </Button></Link>;
   };
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
@@ -30,9 +32,9 @@ const TicketList = () => {
   const columns = [
     {
       dataField: "_id",
-      text: "Id",
+      text: "Edit",
       formatter: idFormatter,
-      style: { backgroundColor: "yellow" },
+      //style: { backgroundColor: "yellow" },
     },
     { dataField: "date", text: "date", sort: true, filter: textFilter() },
     {

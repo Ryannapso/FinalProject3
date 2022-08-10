@@ -23,6 +23,7 @@ import UpdateUser from "./components/UpdateUser";
 import MessageList from "./pages/CR/MessageList";
 import NewCustomer from "./pages/CR/Customers/NewCustomer";
 import CustomersList from "./pages/CR/Customers/CustomersList";
+import UpdateCustomer from "./pages/CR/Customers/UpdateCustomer";
 import SearchCustomer from "./pages/CR/Customers/SearchCustomer";
 import SearchCustomer2 from "./pages/CR/Customers/SearchCustomer2";
 import CloseTicket from "./pages/CR/ServiceCall/CloseTicket";
@@ -40,6 +41,7 @@ import MainPageMessages from "./pages/Admin/MainPageMessages";
 import NewAdminMessage from "./pages/Admin/NewAdminMessage";
 import Reports from "./pages/Admin/Reports";
 import UserList from "./pages/Admin/UserList";
+import UpdateAdminMessage from "./pages/Admin/UpdateAdminMessage";
 
 //import Header from "./test/Header";
 
@@ -105,6 +107,14 @@ function App() {
           <Route path="/customersList" element={<CustomersList />} />
           <Route path="/searchCustomer" element={<SearchCustomer />} />
           <Route path="/searchCustomer2" element={<SearchCustomer2 />} />
+          <Route
+            path="/serviceCall/updateCustomer/:id"
+            element={<UpdateCustomer />}
+          />
+          <Route
+            path="/serviceCall/updateCustomer"
+            element={<UpdateCustomer />}
+          />
           <Route path="/serviceCall/closeTicket" element={<CloseTicket />} />
           <Route path="/serviceCall/newTicket" element={<NewTicket />} />
           <Route
@@ -124,6 +134,10 @@ function App() {
             element={<MainPageMessages />}
           />
           <Route path="/admin/newAdminMessages" element={<NewAdminMessage />} />
+          <Route
+            path="/admin/updateAdminMessage/:id"
+            element={<UpdateAdminMessage />}
+          />
           <Route path="/admin/reports" element={<Reports />} />
           <Route path="/admin/NewEmployees" element={<NewEmployees />} />
         </Routes>
