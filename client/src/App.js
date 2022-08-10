@@ -34,9 +34,10 @@ import BuildPc from "./pages/Lab/BuildPc";
 import Pc from "./pages/Lab/Pc";
 import Phone from "./pages/Lab/Phone";
 //admin
-import EmployeesList from "./pages/Admin/UserList";
+
 import NewEmployees from "./pages/Admin/NewEmployees.jsx";
 import MainPageMessages from "./pages/Admin/MainPageMessages";
+import NewAdminMessage from "./pages/Admin/NewAdminMessage";
 import Reports from "./pages/Admin/Reports";
 import UserList from "./pages/Admin/UserList";
 
@@ -122,6 +123,7 @@ function App() {
             path="/admin/mainPageMessages"
             element={<MainPageMessages />}
           />
+          <Route path="/admin/newAdminMessages" element={<NewAdminMessage />} />
           <Route path="/admin/reports" element={<Reports />} />
           <Route path="/admin/NewEmployees" element={<NewEmployees />} />
         </Routes>

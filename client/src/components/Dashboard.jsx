@@ -112,7 +112,7 @@ const Dashboard = () => {
                 <SubMenu title="Admin" icon={<FaUserTie />}>
                  
                   <MenuItem icon={<FaRegEdit />}>
-                    Main Page Messages <Link to="/admin/mainPageMessages" />
+                    Main Page Messages <Link to="/admin/newAdminMessages" />
                   </MenuItem>
                   <MenuItem icon={<FaPoll />}>
                     Reports <Link to="/admin/reports" />
