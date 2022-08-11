@@ -2,6 +2,8 @@ import "./App.css";
 import axios from "axios";
 import { createContext, useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -141,6 +143,7 @@ function App() {
           <Route path="/admin/reports" element={<Reports />} />
           <Route path="/admin/NewEmployees" element={<NewEmployees />} />
         </Routes>
+        <ToastContainer/>
         <Footer />
       </UserContext.Provider>
     </>

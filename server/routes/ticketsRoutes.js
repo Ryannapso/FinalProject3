@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Ticket = require("../models/ticketModel");
 const Customer = require("../models/customerModel");
+const asyncHandler = require('express-async-handler')
 
 router.get("/", async (req, res) => {
   await Ticket.find()
@@ -21,25 +22,34 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.json("Error: +err"));
 });
 
-router.post("/", async (req, res) => {
-  const ticket = await Ticket.create({
-    problem: req.body.problem,
-    assignedTo: req.body.assignedTo,
-    status: req.body.status,
-    customerPhone: req.body.customerPhone,
-  });
-  try {
+router.post("/", asyncHandler(async (req, res) => {
+  const { problem, assignedTo, status, customerPhone } = req.body
+  const customer = await Customer.findOne({ phone: customerPhone });
 
-    const customer = await Customer.findOne({ phone: ticket.customerPhone });
+  if (customer) {
+    const ticket = await Ticket.create({
+    problem,
+    assignedTo,
+    status,
+    customerPhone
+    });
+    
     customer.tickets.push(ticket._id);
     customer.save();
-    res.status(200).json(ticket);
-  } catch (error) {
-    console.log("no such user");
+    res.status(201).json(ticket);
+  } else {
+    res.status(400)
+        throw new Error('Customer does not exists')
   }
 
 
-});
+  
+  
+  
+  
+  
+    
+}));
 
 router.delete("/:id", (req, res) => {
   Ticket.findByIdAndDelete(req.params.id)

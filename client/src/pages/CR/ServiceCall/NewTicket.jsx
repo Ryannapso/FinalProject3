@@ -1,21 +1,46 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+
 
 const NewTicket = () => {
+
+  const navigate = useNavigate()
   //post
   const [problem, setProblem] = useState("");
   const [status, setStatus] = useState("");
   const [assignedTo, SetAssignedTo] = useState("");
   const [customerPhone, setCustomerPhone] = useState('')
 
-  const addToList = () => {
+  const onSubmit = (e) => {
+    e.preventDefault()
+
     Axios.post("http://localhost:3001/api/tickets", {
       problem: problem,
       status: status,
       assignedTo: assignedTo,
       customerPhone: customerPhone
-    });
-  };
+    })
+      .then(res => {
+        if (res.status === 201) {
+          toast.success("Ticket has been created")
+          navigate('/serviceCall/ticketList')
+        }
+      })
+      .catch(err => {
+        if (err.response) {
+          toast.error("Customer does not exists, close message to create a customer", {
+            onClose: () => navigate("/newCustomer")
+          })
+          
+        } 
+      })
+      
+  }
+
+  
+  
   //end of post
 
   return (
@@ -36,7 +61,7 @@ const NewTicket = () => {
               <img src="/assets/contact.jpg" alt="Contact" className="w-75" />
             </div>
             <div className="col-md-6">
-              <form>
+              <form onSubmit={onSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
                     assignedTo{" "}
@@ -120,7 +145,7 @@ const NewTicket = () => {
                 <button
                   type="submit"
                   className="btn btn-outline-primary rounded-pill px-4"
-                  onClick={addToList}
+                  onClick={onSubmit}
                 >
                   Open New Ticket <i className="fa fa-paper-plane ms-2"></i>
                 </button>
