@@ -43,6 +43,7 @@ function SingleCustomer(props) {
                     <td>{test.problem}</td>
                     <td>{test.status}</td>
                     <td>{test.assignedTo}</td>
+                    
                     <td>
                       <Link
                         key={test._id}
