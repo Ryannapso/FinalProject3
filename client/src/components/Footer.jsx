@@ -73,7 +73,7 @@ const Footer = () => {
             </div>
 
             <div className="d-flex justify-content-between pt-4 mt-4 border-top">
-              <p>Moshe Maman</p>
+              <p>Moshe Maman KAKI</p>
               <ul className="list-unstated d-flex">
                 <li className="ms-3">
                   <a className="link-light" to="#">

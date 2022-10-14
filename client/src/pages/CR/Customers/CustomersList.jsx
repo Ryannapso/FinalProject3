@@ -27,10 +27,7 @@ function CustomerList() {
   return (
     <>
       <div>
-        <label htmlFor="search">
-        Search
-        <input id="search" type="text" onChange={handleSearch} />
-        </label>
+        <input id="search" type="text" placeholder="Search" onChange={handleSearch} />
         <CustomerTable data={data}/>
       </div>
     </>
