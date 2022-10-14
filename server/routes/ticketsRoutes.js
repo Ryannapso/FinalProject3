@@ -40,15 +40,7 @@ router.post("/", asyncHandler(async (req, res) => {
   } else {
     res.status(400)
         throw new Error('Customer does not exists')
-  }
-
-
-  
-  
-  
-  
-  
-    
+  }   
 }));
 
 router.delete("/:id", (req, res) => {
@@ -74,5 +66,7 @@ router.put("/:id", (req, res) => {
 //   });
 //   res.send(data);
 // });
+
+router.get("/")
 
 module.exports = router;

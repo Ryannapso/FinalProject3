@@ -8,9 +8,9 @@ const messageRoutes = require("./routes/messageRoutes");
 const customersRoutes = require("./routes/customersRoutes");
 const userRoutes = require("./routes/userRoutes");
 const ticketsRoutes = require("./routes/ticketsRoutes");
-const AdminMessageRoutes = require("./routes/AdminMessageRoutes")
-const { errorHandler } = require('./middleware/errorMiddleware')
-
+const AdminMessageRoutes = require("./routes/AdminMessageRoutes");
+const reportsRoutes = require("./routes/reportRoutes");
+const { errorHandler } = require("./middleware/errorMiddleware");
 
 connectDB();
 
@@ -24,8 +24,9 @@ app.use("/api/message", messageRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/customers", customersRoutes);
 app.use("/api/tickets", ticketsRoutes);
+app.use("/api/reports", reportsRoutes);
 app.use("/api/AdminMessage", AdminMessageRoutes);
-app.use(errorHandler)
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`server started on port ${port}`);
