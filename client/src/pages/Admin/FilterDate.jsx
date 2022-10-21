@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
 import Axios from "axios";
+import ReportsTable from "../../components/ReportsTable";
 
 const FilterDate = () => {
   const [tickets, SetTickets] = useState([]);
@@ -10,8 +10,6 @@ const FilterDate = () => {
     });
   }, []);
 
-  
-  
 
   //remove duplicate from list
   const statusDropDownList = () => {
@@ -26,6 +24,14 @@ const FilterDate = () => {
   };
 
   const assignedTo = assignedToDropDownList();
+
+  const [statusChosen, setStatusChosen] = useState("");
+
+  const handleStatusChosen = (event) => {
+    setStatusChosen(event.target.value);
+  };
+
+  const filtteredData = tickets.filter(item => item.status.includes(statusChosen))
 
   return (
     <>
@@ -59,7 +65,11 @@ const FilterDate = () => {
 
               <div className="col-sm-12 my-2">
                 <label htmlFor="status">status</label>
-                <select className="form-control" id="status" onChange={""}>
+                <select
+                  className="form-control"
+                  id="status"
+                  onChange={handleStatusChosen}
+                >
                   <option value="">Select</option>
                   {status.map((status) => (
                     <option value={status} key={status}>
@@ -103,43 +113,12 @@ const FilterDate = () => {
           <div className="col-sm-9">
             <div className="row mt-5">
               <div>
-                <h2> there are {tickets.status = "Answered".length} post in the Database </h2>
-                <Table striped bordered hover variant="">
-                  <thead>
-                    <tr>
-                      <th>id</th>
-                      <th>create date</th>
-                      <th>update date</th>
-                      <th>problem</th>
-                      <th>assignedTo</th>
-                      <th>status</th>
-                      <th>customerPhone</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {tickets.map((item) => {
-                      return (
-                        <tr>
-                          <td>{item._id}</td>
-                          <td>
-                            {new Date(item.createdAt).toLocaleDateString(
-                              "he-IL"
-                            )}
-                          </td>
-                          <td>
-                            {new Date(item.updatedAt).toLocaleDateString(
-                              "he-IL"
-                            )}
-                          </td>
-                          <td>{item.problem}</td>
-                          <td>{item.assignedTo}</td>
-                          <td>{item.status}</td>
-                          <td>{item.customerPhone}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </Table>
+                <h2>
+                  {" "}
+                  there are {(tickets.status = "Answered".length)} post in the
+                  Database{" "}
+                </h2>
+                <ReportsTable tableData={filtteredData} />
               </div>
             </div>
           </div>
