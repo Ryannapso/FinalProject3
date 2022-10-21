@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
 import Axios from "axios";
 import Charts from "./Charts";
+import ReportsTable from "../../components/ReportsTable";
 
 const FilterDate = () => {
   const [tickets, SetTickets] = useState([]);
@@ -10,6 +10,7 @@ const FilterDate = () => {
       SetTickets(response.data);
     });
   }, []);
+
 
   //remove duplicate from list
   const statusDropDownList = () => {
@@ -24,6 +25,14 @@ const FilterDate = () => {
   };
 
   const assignedTo = assignedToDropDownList();
+
+  const [statusChosen, setStatusChosen] = useState("");
+
+  const handleStatusChosen = (event) => {
+    setStatusChosen(event.target.value);
+  };
+
+  const filtteredData = tickets.filter(item => item.status.includes(statusChosen))
 
   return (
     <>
@@ -57,7 +66,11 @@ const FilterDate = () => {
 
               <div className="col-sm-12 my-2">
                 <label htmlFor="status">status</label>
-                <select className="form-control" id="status" onChange={""}>
+                <select
+                  className="form-control"
+                  id="status"
+                  onChange={handleStatusChosen}
+                >
                   <option value="">Select</option>
                   {status.map((status) => (
                     <option value={status} key={status}>
@@ -143,6 +156,7 @@ const FilterDate = () => {
                     })}
                   </tbody>
                 </Table>
+                <ReportsTable tableData={filtteredData} />
               </div>
             </div>
           </div>
