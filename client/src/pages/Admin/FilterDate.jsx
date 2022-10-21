@@ -165,7 +165,7 @@ const FilterDate = () => {
                   there are {(tickets.status = "Answered".length)} post in the
                   Database{" "}
                 </h2>
-                <Charts />
+                <Charts chartData={filteredDateData} />
                 <ReportsTable tableData={filteredDateData} />
               </div>
             </div>

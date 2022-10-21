@@ -21,21 +21,26 @@ ChartJS.register(
   Legend
 );
 
-export function Charts() {
-  const [tickets, SetTickets] = useState([]);
-  useEffect(() => {
-    Axios.get("http://localhost:3001/api/tickets").then((response) => {
-      SetTickets(response.data);
-    });
-  }, []);
-
+export function Charts(props) {
   const statusList = () => {
-    return [...new Set(tickets.map((item) => item.assignedTo))];
+    return [...new Set(props.chartData.map((item) => item.assignedTo))];
   };
 
   const assignedTo = statusList();
 
-  // connt data.assignedTo.length = (tickets.assignedTo = "phone".length);
+  const phoneCounter = props.chartData.filter((item) =>
+    item.assignedTo.includes("Phone")
+  );
+
+  const PCCounter = props.chartData.filter((item) =>
+    item.assignedTo.includes("PC")
+  );
+
+  console.log(PCCounter);
+
+  const CRCounter = props.chartData.filter((item) =>
+    item.assignedTo.includes("cr")
+  );
 
   const options = {
     responsive: true,
@@ -50,35 +55,18 @@ export function Charts() {
     },
   };
 
-  // const labels = [
-  //   "January",
-  //   "February",
-  //   "March",
-  //   "April",
-  //   "May",
-  //   "June",
-  //   "July",
-  // ];
-
   const data = {
     labels: assignedTo,
     datasets: [
       {
         label: "Dataset 1",
-        data: [
-          (tickets.assignedTo = "phone".length),
-          (tickets.assignedTo = "PC".length),
-          (tickets.assignedTo = "cr".length),
-        ],
+        data: [phoneCounter.length, PCCounter.length, CRCounter.length],
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
-      // {
-      //   label: "Dataset 2",
-      //   data: [10, 20, 30, 40, 50, 60],
-      //   backgroundColor: "rgba(53, 162, 235, 0.5)",
-      // },
     ],
   };
+
+  console.log(data);
   return (
     <div style={{ width: "800px", margin: "auto auto" }}>
       <Bar options={options} data={data} />
