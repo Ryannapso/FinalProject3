@@ -6,7 +6,7 @@ const Ticket = require("../models/ticketModel");
 const start = new Date('2022-8-5').toDateString();
 const end = new Date('2022-8-6').toDateString();
 
-//test
+
 
 router.get(
   "/",
