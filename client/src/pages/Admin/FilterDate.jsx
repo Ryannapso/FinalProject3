@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import Axios from "axios";
+import Charts from "./Charts";
 
 const FilterDate = () => {
   const [tickets, SetTickets] = useState([]);
@@ -9,9 +10,6 @@ const FilterDate = () => {
       SetTickets(response.data);
     });
   }, []);
-
-  
-  
 
   //remove duplicate from list
   const statusDropDownList = () => {
@@ -103,7 +101,12 @@ const FilterDate = () => {
           <div className="col-sm-9">
             <div className="row mt-5">
               <div>
-                <h2> there are {tickets.status = "Answered".length} post in the Database </h2>
+                <h2>
+                  {" "}
+                  there are {(tickets.status = "Answered".length)} post in the
+                  Database{" "}
+                </h2>
+                <Charts />
                 <Table striped bordered hover variant="">
                   <thead>
                     <tr>

@@ -80,7 +80,7 @@ export function Charts() {
     ],
   };
   return (
-    <div style={{ width: "1200px", margin: "auto auto" }}>
+    <div style={{ width: "800px", margin: "auto auto" }}>
       <Bar options={options} data={data} />
     </div>
   );
