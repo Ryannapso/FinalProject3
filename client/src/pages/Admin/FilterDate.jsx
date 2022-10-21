@@ -11,7 +11,6 @@ const FilterDate = () => {
     });
   }, []);
 
-
   //remove duplicate from list
   const statusDropDownList = () => {
     return [...new Set(tickets.map((item) => item.status))];
@@ -26,14 +25,57 @@ const FilterDate = () => {
 
   const assignedTo = assignedToDropDownList();
 
+  const [assignedToChosen, setAssignedToChosen] = useState("");
+
+  const handleAssignedChosen = (event) => {
+    setAssignedToChosen(event.target.value);
+  };
+
   const [statusChosen, setStatusChosen] = useState("");
 
   const handleStatusChosen = (event) => {
     setStatusChosen(event.target.value);
   };
 
-  const filtteredData = tickets.filter(item => item.status.includes(statusChosen))
+  const [toDateChosen, setToDateChosen] = useState("");
 
+  const handleToDateChosen = (event) => {
+    setToDateChosen(event.target.value);
+  };
+
+  const [fromDateChosen, setFromDateChosen] = useState("");
+
+  const handleFromDateChosen = (event) => {
+    setFromDateChosen(event.target.value);
+  };
+
+  const filteredDateData = tickets.filter((item) => {
+    if (fromDateChosen === "" && toDateChosen !== "")
+      return (
+        item.createdAt <= toDateChosen &&
+        item.status.includes(statusChosen) &&
+        item.assignedTo.includes(assignedToChosen)
+      );
+    else if (toDateChosen === "" && fromDateChosen !== "")
+      return (
+        item.createdAt >= fromDateChosen &&
+        item.status.includes(statusChosen) &&
+        item.assignedTo.includes(assignedToChosen)
+      );
+    else if (fromDateChosen !== "" && toDateChosen !== "")
+      return (
+        item.createdAt >= fromDateChosen &&
+        item.createdAt <= toDateChosen &&
+        item.status.includes(statusChosen) &&
+        item.assignedTo.includes(assignedToChosen)
+      );
+    else
+      return (
+        tickets &&
+        item.status.includes(statusChosen) &&
+        item.assignedTo.includes(assignedToChosen)
+      );
+  });
   return (
     <>
       <div className="container">
@@ -81,7 +123,11 @@ const FilterDate = () => {
               </div>
               <div className="col-sm-12 my-2">
                 <label htmlFor="assignedTo">assignedTo</label>
-                <select className="form-control" id="assignedTo" onChange={""}>
+                <select
+                  className="form-control"
+                  id="assignedTo"
+                  onChange={handleAssignedChosen}
+                >
                   <option value="">Select</option>
                   {assignedTo.map((assignedTo) => (
                     <option value={assignedTo} key={assignedTo}>
@@ -97,7 +143,7 @@ const FilterDate = () => {
                   type="date"
                   className="form-control"
                   id="startDate"
-                  onChange={""}
+                  onChange={handleFromDateChosen}
                 />
               </div>
               <div className="col-sm-12 my-2">
@@ -106,7 +152,7 @@ const FilterDate = () => {
                   type="date"
                   className="form-control"
                   id="endDate"
-                  onChange={""}
+                  onChange={handleToDateChosen}
                 />
               </div>
             </div>
@@ -120,7 +166,7 @@ const FilterDate = () => {
                   Database{" "}
                 </h2>
                 <Charts />
-                <ReportsTable tableData={filtteredData} />
+                <ReportsTable tableData={filteredDateData} />
               </div>
             </div>
           </div>
