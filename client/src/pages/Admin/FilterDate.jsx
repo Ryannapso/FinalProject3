@@ -120,42 +120,6 @@ const FilterDate = () => {
                   Database{" "}
                 </h2>
                 <Charts />
-                <Table striped bordered hover variant="">
-                  <thead>
-                    <tr>
-                      <th>id</th>
-                      <th>create date</th>
-                      <th>update date</th>
-                      <th>problem</th>
-                      <th>assignedTo</th>
-                      <th>status</th>
-                      <th>customerPhone</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {tickets.map((item) => {
-                      return (
-                        <tr>
-                          <td>{item._id}</td>
-                          <td>
-                            {new Date(item.createdAt).toLocaleDateString(
-                              "he-IL"
-                            )}
-                          </td>
-                          <td>
-                            {new Date(item.updatedAt).toLocaleDateString(
-                              "he-IL"
-                            )}
-                          </td>
-                          <td>{item.problem}</td>
-                          <td>{item.assignedTo}</td>
-                          <td>{item.status}</td>
-                          <td>{item.customerPhone}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </Table>
                 <ReportsTable tableData={filtteredData} />
               </div>
             </div>
