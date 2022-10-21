@@ -3,7 +3,7 @@ import axios from "axios";
 import { createContext, useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -44,6 +44,9 @@ import NewAdminMessage from "./pages/Admin/NewAdminMessage";
 import Reports from "./pages/Admin/Reports";
 import UserList from "./pages/Admin/UserList";
 import UpdateAdminMessage from "./pages/Admin/UpdateAdminMessage";
+import DatePickerRange from "./components/DatePickerRange";
+import FilterDate from "./pages/Admin/FilterDate";
+import Charts from "./pages/Admin/Charts";
 
 //import Header from "./test/Header";
 
@@ -142,8 +145,11 @@ function App() {
           />
           <Route path="/admin/reports" element={<Reports />} />
           <Route path="/admin/NewEmployees" element={<NewEmployees />} />
+          <Route path="/admin/DatePickerRange" element={<DatePickerRange />} />
+          <Route path="/admin/filterData" element={<FilterDate />} />
+          <Route path="/admin/charts" element={<Charts />} />
         </Routes>
-        <ToastContainer/>
+        <ToastContainer />
         <Footer />
       </UserContext.Provider>
     </>

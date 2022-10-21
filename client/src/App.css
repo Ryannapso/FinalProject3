@@ -31,6 +31,8 @@
 /* Footer */
 .footer {
   position: relative;
+  width: 100%;
+  bottom: 0;
   background: rgb(0, 101, 219);
   background: linear-gradient(
     90deg,

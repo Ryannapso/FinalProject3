@@ -3,14 +3,13 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const Ticket = require("../models/ticketModel");
 
-const start = new Date('2022-8-5').toDateString();
-const end = new Date('2022-8-6').toDateString();
-
-
+const start = new Date("2022-8-5").toDateString();
+const end = new Date("2022-8-6").toDateString();
 
 router.get(
   "/",
   asyncHandler(async (req, res) => {
+  
     await Ticket.find({
       createdAt: { $gte: start, $lt: end },
     })
