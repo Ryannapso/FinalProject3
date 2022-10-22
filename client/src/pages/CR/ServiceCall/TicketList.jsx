@@ -57,6 +57,12 @@ const TicketList = () => {
       sort: true,
       filter: textFilter(),
     },
+    {
+      dataField: "employeePhone",
+      text: "employeePhone",
+      sort: true,
+      filter: textFilter(),
+    },
   ];
   //set pages
   const pagination = paginationFactory({

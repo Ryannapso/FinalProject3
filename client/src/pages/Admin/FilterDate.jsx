@@ -23,6 +23,7 @@ const FilterDate = () => {
     return [...new Set(tickets.map((item) => item.assignedTo))];
   };
 
+
   const assignedTo = assignedToDropDownList();
 
   const [assignedToChosen, setAssignedToChosen] = useState("");
@@ -50,11 +51,13 @@ const FilterDate = () => {
   };
 
   const filteredDateData = tickets.filter((item) => {
+  
     if (fromDateChosen === "" && toDateChosen !== "")
       return (
         item.createdAt <= toDateChosen &&
         item.status.includes(statusChosen) &&
         item.assignedTo.includes(assignedToChosen)
+        
       );
     else if (toDateChosen === "" && fromDateChosen !== "")
       return (
@@ -75,6 +78,8 @@ const FilterDate = () => {
         item.status.includes(statusChosen) &&
         item.assignedTo.includes(assignedToChosen)
       );
+
+      
   });
   return (
     <>
@@ -85,18 +90,9 @@ const FilterDate = () => {
               <div className="col">
                 <h4 className="border-bottom">Filters</h4>
               </div>
-              <div className="col-sm-12 my-2">
-                <label htmlFor="name">name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  //   value={""}
-                  onChange={""}
-                />
-              </div>
+              
 
-              <div className="col-sm-12 my-2">
+              {/* <div className="col-sm-12 my-2">
                 <label htmlFor="email">email</label>
                 <input
                   type="text"
@@ -104,7 +100,7 @@ const FilterDate = () => {
                   id="email"
                   onChange={""}
                 />
-              </div>
+              </div> */}
 
               <div className="col-sm-12 my-2">
                 <label htmlFor="status">status</label>

@@ -1,46 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
-import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
-
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../App";
 
 const NewTicket = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   //post
   const [problem, setProblem] = useState("");
   const [status, setStatus] = useState("");
   const [assignedTo, SetAssignedTo] = useState("");
-  const [customerPhone, setCustomerPhone] = useState('')
+  const [customerPhone, setCustomerPhone] = useState("");
+  const [employee, setEmployee] = useState("");
+  const { userData, setUserData } = useContext(UserContext);
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    const x = userData.user.phone;
 
     Axios.post("http://localhost:3001/api/tickets", {
       problem: problem,
       status: status,
       assignedTo: assignedTo,
-      customerPhone: customerPhone
+      customerPhone: customerPhone,
+      employeePhone: x,
     })
-      .then(res => {
+      .then((res) => {
         if (res.status === 201) {
-          toast.success("Ticket has been created")
-          navigate('/serviceCall/ticketList')
+          toast.success("Ticket has been created");
+          navigate("/serviceCall/ticketList");
         }
       })
-      .catch(err => {
+      .catch((err) => {
         if (err.response) {
-          toast.error("Customer does not exists, close message to create a customer", {
-            onClose: () => navigate("/newCustomer")
-          })
-          
-        } 
-      })
-      
-  }
+          toast.error(
+            "Customer does not exists, close message to create a customer",
+            {
+              onClose: () => navigate("/newCustomer"),
+            }
+          );
+        }
+      });
+  };
 
-  
-  
   //end of post
 
   return (
@@ -84,7 +86,7 @@ const NewTicket = () => {
                     <option value="BuildPc">BuildPc</option>
                   </select>
                 </div>
-                 <div className="mb-3">
+                <div className="mb-3">
                   <label
                     htmlFor="exampleFormControlTextarea1"
                     className="form-label"
@@ -134,7 +136,8 @@ const NewTicket = () => {
                     onChange={(event) => {
                       setStatus(event.target.value);
                     }}
-                  ><option value=""></option>
+                  >
+                    <option value=""></option>
                     <option value="open">open</option>
                     <option value="Updated">Updated</option>
                     <option value="Answered">Answered</option>

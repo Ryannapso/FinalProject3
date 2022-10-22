@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Ticket = require("../models/ticketModel");
 const Customer = require("../models/customerModel");
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require("express-async-handler");
 
 router.get("/", async (req, res) => {
   await Ticket.find()
@@ -22,26 +22,30 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.json("Error: +err"));
 });
 
-router.post("/", asyncHandler(async (req, res) => {
-  const { problem, assignedTo, status, customerPhone } = req.body
-  const customer = await Customer.findOne({ phone: customerPhone });
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const { problem, assignedTo, status, customerPhone,employeePhone } = req.body;
+    const customer = await Customer.findOne({ phone: customerPhone });
 
-  if (customer) {
-    const ticket = await Ticket.create({
-    problem,
-    assignedTo,
-    status,
-    customerPhone
-    });
-    
-    customer.tickets.push(ticket._id);
-    customer.save();
-    res.status(201).json(ticket);
-  } else {
-    res.status(400)
-        throw new Error('Customer does not exists')
-  }   
-}));
+    if (customer) {
+      const ticket = await Ticket.create({
+        problem,
+        assignedTo,
+        status,
+        customerPhone,
+        employeePhone,
+      });
+
+      customer.tickets.push(ticket._id);
+      customer.save();
+      res.status(201).json(ticket);
+    } else {
+      res.status(400);
+      throw new Error("Customer does not exists");
+    }
+  })
+);
 
 router.delete("/:id", (req, res) => {
   Ticket.findByIdAndDelete(req.params.id)
@@ -67,6 +71,6 @@ router.put("/:id", (req, res) => {
 //   res.send(data);
 // });
 
-router.get("/")
+router.get("/");
 
 module.exports = router;

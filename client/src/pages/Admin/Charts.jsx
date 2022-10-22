@@ -22,18 +22,15 @@ ChartJS.register(
 );
 
 export function Charts(props) {
-  const statusList = () => {
-    return [...new Set(props.chartData.map((item) => item.assignedTo))];
-  };
-
-  const assignedTo = statusList();
-
   const phoneCounter = props.chartData.filter((item) =>
     item.assignedTo.includes("Phone")
   );
 
   const PCCounter = props.chartData.filter((item) =>
     item.assignedTo.includes("PC")
+  );
+  const BuildPc = props.chartData.filter((item) =>
+    item.assignedTo.includes("BuildPc")
   );
 
   console.log(PCCounter);
@@ -56,11 +53,16 @@ export function Charts(props) {
   };
 
   const data = {
-    labels: assignedTo,
+    labels: ["phone", "pc", "CR", "BuildPc"],
     datasets: [
       {
         label: "Dataset 1",
-        data: [phoneCounter.length, PCCounter.length, CRCounter.length],
+        data: [
+          phoneCounter.length,
+          PCCounter.length,
+          CRCounter.length,
+          BuildPc.length,
+        ],
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
