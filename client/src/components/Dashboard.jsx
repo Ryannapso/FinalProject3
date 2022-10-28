@@ -10,9 +10,7 @@ import { SidebarHeader } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
 import {
   FaCalendarAlt,
-  FaCalendarCheck,
   FaCalendarPlus,
-  FaCalendarTimes,
   FaEnvelope,
   FaLaptop,
   FaLaptopMedical,
@@ -20,29 +18,22 @@ import {
   FaPoll,
   FaRegEdit,
   FaRegSun,
-  FaSearch,
   FaUser,
   FaUserPlus,
-  FaUsers,
   FaUserTie,
   FaListAlt,
-  CgUserList,
 } from "react-icons/fa";
 
 import { UserContext } from "../App";
 
 const Dashboard = () => {
-  const { userData, setUserData } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
   return (
-    <div id="sidebar">
-      {/* <h2 className="text-center">
-        {" "}
-        <h3>Welcome {userData.user.name} </h3>
-      </h2> */}
+    <div id="sidebar">   
       <div>
         <Row>
           <Col sm={5}>
-            <ProSidebar className="fixed-left" >
+            <ProSidebar className="fixed-left">
               <Menu iconShape="square">
                 {userData.user.role === "admin" ||
                 userData.user.role === "cr" ? (
@@ -60,9 +51,7 @@ const Dashboard = () => {
                         Customers Lists <Link to="/customersList" />
                       </MenuItem>
 
-                      {/* <MenuItem icon={<FaSearch />}>
-                  Search Customer <Link to="/searchCustomer" />
-                </MenuItem> */}
+                
                     </SubMenu>
 
                     <SubMenu title="Service Call" icon={<FaCalendarAlt />}>
@@ -75,13 +64,7 @@ const Dashboard = () => {
                         <Link to="/serviceCall/newTicket" />{" "}
                       </MenuItem>
 
-                      {/* <MenuItem icon={<FaCalendarCheck />}>
-                  Update Ticket <Link to="/serviceCall/updateTicket" />
-                </MenuItem> */}
-
-                      {/* <MenuItem icon={<FaCalendarTimes />}>
-                  Close Ticket <Link to="/serviceCall/closeTicket" />
-                </MenuItem> */}
+                     
                     </SubMenu>
                   </div>
                 ) : (

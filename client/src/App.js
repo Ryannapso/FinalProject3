@@ -1,10 +1,11 @@
 import "./App.css";
 import axios from "axios";
 import { createContext, useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+//components
 import Header from "./components/Header";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -13,12 +14,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
 import UpdateMsg2 from "./components/UpdateMsg2";
-import MessageList2 from "./components/MessageList2";
-
 import Profile from "./components/auth/Profile";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-
 import UpdateUser from "./components/UpdateUser";
 
 //cr
@@ -26,29 +24,21 @@ import MessageList from "./pages/CR/MessageList";
 import NewCustomer from "./pages/CR/Customers/NewCustomer";
 import CustomersList from "./pages/CR/Customers/CustomersList";
 import UpdateCustomer from "./pages/CR/Customers/UpdateCustomer";
-import SearchCustomer from "./pages/CR/Customers/SearchCustomer";
-import SearchCustomer2 from "./pages/CR/Customers/SearchCustomer2";
-import CloseTicket from "./pages/CR/ServiceCall/CloseTicket";
 import NewTicket from "./pages/CR/ServiceCall/NewTicket";
 import UpdateTicket from "./pages/CR/ServiceCall/UpdateTicket";
 import TicketList from "./pages/CR/ServiceCall/TicketList";
+
 //lab
 import BuildPc from "./pages/Lab/BuildPc";
 import Pc from "./pages/Lab/Pc";
 import Phone from "./pages/Lab/Phone";
-//admin
 
-import NewEmployees from "./pages/Admin/NewEmployees.jsx";
+//admin
 import MainPageMessages from "./pages/Admin/MainPageMessages";
 import NewAdminMessage from "./pages/Admin/NewAdminMessage";
-import Reports from "./pages/Admin/Reports";
 import UserList from "./pages/Admin/UserList";
 import UpdateAdminMessage from "./pages/Admin/UpdateAdminMessage";
-import DatePickerRange from "./components/DatePickerRange";
-import FilterDate from "./pages/Admin/FilterDate";
-import Charts from "./pages/Admin/Charts";
-
-//import Header from "./test/Header";
+import Reports from "./pages/Admin/Reports";
 
 //like global var
 export const UserContext = createContext();
@@ -98,8 +88,7 @@ function App() {
           <Route path="/service" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/messageList2" element={<MessageList2 />} />
-          {/* <Route path="/userList" element={<UserList />} /> */}
+
           <Route path="/updateUser/:id" element={<UpdateUser />} />
           <Route path="/updateMsg2/:id" element={<UpdateMsg2 />} />
           <Route path="/register" element={<Register />} />
@@ -110,8 +99,6 @@ function App() {
           <Route path="/messageList" element={<MessageList />} />
           <Route path="/newCustomer" element={<NewCustomer />} />
           <Route path="/customersList" element={<CustomersList />} />
-          <Route path="/searchCustomer" element={<SearchCustomer />} />
-          <Route path="/searchCustomer2" element={<SearchCustomer2 />} />
           <Route
             path="/serviceCall/updateCustomer/:id"
             element={<UpdateCustomer />}
@@ -120,7 +107,6 @@ function App() {
             path="/serviceCall/updateCustomer"
             element={<UpdateCustomer />}
           />
-          <Route path="/serviceCall/closeTicket" element={<CloseTicket />} />
           <Route path="/serviceCall/newTicket" element={<NewTicket />} />
           <Route
             path="/serviceCall/updateTicket/:id"
@@ -144,10 +130,6 @@ function App() {
             element={<UpdateAdminMessage />}
           />
           <Route path="/admin/reports" element={<Reports />} />
-          <Route path="/admin/NewEmployees" element={<NewEmployees />} />
-          <Route path="/admin/DatePickerRange" element={<DatePickerRange />} />
-          <Route path="/admin/filterData" element={<FilterDate />} />
-          <Route path="/admin/charts" element={<Charts />} />
         </Routes>
         <ToastContainer />
         <Footer />

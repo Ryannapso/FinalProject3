@@ -18,10 +18,6 @@ const ticketsSchema = mongoose.Schema(
     customerPhone: {
       type: String,
     },
-    employeePhone: {
-      type: String,
-    },
-
     customer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Customer",

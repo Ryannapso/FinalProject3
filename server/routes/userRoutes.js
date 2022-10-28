@@ -6,16 +6,13 @@ const multer = require("multer");
 const auth = require("../middleware/auth");
 
 //register-----------------------------------------------------
-router.get("/register", auth, (req, res) => {
-  User.find()
-    .then((users) => res.json(users))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
 
 router.post("/register", async (req, res) => {
+
   //validation
   //!req.body.name ||
   //test to check if he provide a user name or password or mail
+
   if (!req.body.password || !req.body.email) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
@@ -49,24 +46,19 @@ router.post("/register", async (req, res) => {
   });
 });
 
-// router.delete("/:id", (req, res) => {
-//   User.findByIdAndDelete(req.params.id)
-//     .then(() => res.json("User deleted"))
-//     .catch((err) => res.status(400).json("Error: " + err));
-// });
+
 
 //login------------------------------------------------------
 
-router.get("/login", (req, res) => {
-  // res.send(JWT_SECRET);
-});
+
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
+  
   //test if user exist
   if (!user) {
-    return res.status(400).json({ msg: "User doesnt exist" });
+    return res.status(400).json({ msg: "User doesn't exist" });
   }
-  //!req.body.name ||
+  //!req.body.password ||
   //test to check if he provide a user name or password or mail
   if (!req.body.password || !req.body.email) {
     return res.status(400).json({ msg: "Please enter all fields" });

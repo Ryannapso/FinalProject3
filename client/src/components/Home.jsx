@@ -9,13 +9,11 @@ function home() {
     <div>
       <section id="home">
         <div className="container">
-          {/* justify-content-center = set center text */}
           <div className="row justify-content-center">
             <div className="col-md-8">
               <h1 className="display-4 fw-bolder mb-4 text-center text-white">
                 Pc shop
               </h1>
-              {/* fs- text size //   */}
               <p className="lead text-center fs-4 mb-5 text-white">
                 we specialize in pc , phone , gaming console sales and repair.
               </p>

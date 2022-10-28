@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-let AdminMessageSchema = require("../models/AdminMessageModel");
+const AdminMessageSchema = require("../models/AdminMessageModel");
 
 
 

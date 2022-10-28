@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import errorMsg from "../ErrorMsg";
 import { UserContext } from "../../App";
-import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const Register = () => {
@@ -16,9 +14,8 @@ const Register = () => {
     email: "",
     password: "",
     passwordAgin: "",
-   // role: "",
+    role: "",
   });
-  const [errorMsg, setErrorMsg] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,9 +61,7 @@ const Register = () => {
       });
       window.location = "/";
     } catch (err) {
-      err.response.data.msg
-        ? setErrorMsg(err.response.data.msg)
-        : setErrorMsg("We have some error!");
+      console.log(err);
     }
   };
 
@@ -170,13 +165,7 @@ const Register = () => {
                   <label htmlFor="name" className="form-label">
                     Role
                   </label>
-                  {/* <input
-                    type="text"
-                    className="form-control"
-                    name="role"
-                    value={user.role}
-                    onChange={handleChange}
-                  /> */}
+
                   <select
                     className="form-control"
                     name="role"
@@ -184,7 +173,6 @@ const Register = () => {
                     onChange={handleChange}
                   >
                     <option selected value=""></option>
-                    <option value="user">user</option>
                     <option value="cr">cr</option>
                     <option value="tech">tech</option>
                     <option value="admin">admin</option>
@@ -206,7 +194,7 @@ const Register = () => {
               </div>
               <div className="mb-3">
                 <label htmlFor="exampleInputPassword1" className="form-label">
-                  passwordAgin
+                  Confirm Password
                 </label>
                 <input
                   type="password"

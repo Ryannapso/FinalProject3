@@ -1,15 +1,13 @@
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { UserContext } from "../App";
 import React, { useContext } from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useParams, useNavigate } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 
 
 
 const Header = () => {
-  const navigate = useNavigate();
+
+  
   const { userData, setUserData } = useContext(UserContext);
   const logOut = () => {
     setUserData({
@@ -61,16 +59,19 @@ const Header = () => {
           </NavLink>
 
           {userData.user ? (
-            
             <Nav>
-                {userData.user.role==="admin" ||userData.user.role==="tech" ||userData.user.role==="cr" ?(
-          <NavLink
-            to="/dashboard"
-            className="btn btn-outline-primary ms-2 px-4 rounded-pill"
-          >
-            <i className="fa fa-user-plus me-2"></i>Dashboard
-          </NavLink>
-           ):console.log("hey")}
+              {userData.user.role === "admin" ||
+              userData.user.role === "tech" ||
+              userData.user.role === "cr" ? (
+                <NavLink
+                  to="/dashboard"
+                  className="btn btn-outline-primary ms-2 px-4 rounded-pill"
+                >
+                  <i className="fa fa-user-plus me-2"></i>Dashboard
+                </NavLink>
+              ) : (
+                console.log("hey")
+              )}
               <NavLink
                 to="/profile"
                 className="btn btn-outline-primary ms-auto px-4 rounded-pill"
@@ -86,9 +87,7 @@ const Header = () => {
                 <i Log Out className="fa fa-user-plus me-2"></i>
                 LogOut
               </NavLink>
-              
             </Nav>
-            
           ) : (
             <Nav>
               <NavLink
@@ -105,12 +104,8 @@ const Header = () => {
               </NavLink>
             </Nav>
           )}
-        
-          
-
         </div>
       </div>
-     
     </nav>
   );
 };

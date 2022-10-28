@@ -4,62 +4,15 @@ import "../../App.css";
 //import FileBase64 from "react-file-base64";
 
 const Profile = () => {
-  const { userData, setUserData } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
   //const [image, setName] = useState("");
 
   return (
     <div>
-      {/* <h1> User Profile of {userData.user.name}</h1>
-      <br />
-      <h5>
-        <b> User ID: </b>
-        {userData.user.id}
-      </h5>
-      <h5>
-        <b> User Name: </b>
-        {userData.user.name}
-      </h5>
-      <h5>
-        <b>User Email: </b>
-        {userData.user.email}
-      </h5>
-      <h5>
-        <b>Register Date: </b>
-        {userData.user.date.toString().slice(0, 10) +
-          " @ " +
-          userData.user.date.toString().slice(11, 19)}
-      </h5>
-      <br /> */}
+     
       <div class="container-xl px-4 mt-4">
         <nav class="nav nav-borders">
-          {/* <a
-            class="nav-link active ms-0"
-            href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details"
-            target="__blank"
-          >
-            Profile
-          </a> */}
-          {/* <a
-            class="nav-link"
-            href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page"
-            target="__blank"
-          >
-            Billing
-          </a>
-          <a
-            class="nav-link"
-            href="/"
-            target="__blank"
-          >
-            Security
-          </a>
-          <a
-            class="nav-link"
-            href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"
-            target="__blank"
-          >
-            Notifications
-          </a> */}
+          
         </nav>
         <hr class="mt-0 mb-4" />
         <div class="row">
@@ -69,15 +22,12 @@ const Profile = () => {
               <div class="card-body text-center">
                 <img
                   class="img-account-profile rounded-circle mb-2"
-                  //src=""
+                 
                   alt=""
                 />
 
                 <div class="bold font-italic text-muted mb-4">Role text</div>
-                {/* 
-                <button class="btn btn-primary" type="button">
-                  Upload new image
-                </button> */}
+               
               </div>
             </div>
           </div>
@@ -214,23 +164,13 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  {/* <button class="btn btn-primary" type="button">Save changes</button> */}
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* <form action="">
-        <FileBase64
-          type="file"
-          multiple={false}
-          onDone={({ base64 }) => setItem({ ...item, image: base64 })}
-        />
-        <div className="right-align">
-          <button className="btn">submit</button>
-        </div>
-      </form> */}
+     
     </div>
   );
 };

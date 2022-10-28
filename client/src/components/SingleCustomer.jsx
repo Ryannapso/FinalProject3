@@ -4,7 +4,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navigate, NavLink } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 
 function SingleCustomer(props) {

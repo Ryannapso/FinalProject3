@@ -1,5 +1,5 @@
 import React from 'react'
-import SingleCustomer from '../pages/CR/Customers/SingleCustomer';
+import SingleCustomer from './SingleCustomer';
 import { Table } from "react-bootstrap";
 
 function CustomerTable(props) {

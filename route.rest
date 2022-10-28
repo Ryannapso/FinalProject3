@@ -2,7 +2,7 @@ GET http://localhost:3001/api/users/62c186e59ccfa34ba7b5b4a1
 
 ###
 
-GET http://localhost:3001/api/customers
+GET http://localhost:3001/api/users/register
 
 
 ###

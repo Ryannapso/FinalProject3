@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
 
-//fruit = msg  Msg
+import { useParams } from "react-router-dom";
+
 const UpdateMsg2 = ({ match }) => {
   const { id } = useParams();
 
@@ -77,7 +76,6 @@ const UpdateMsg2 = ({ match }) => {
                     id="id"
                     name="id"
                     value={msg._id}
-                    // onChange={handleChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -91,7 +89,6 @@ const UpdateMsg2 = ({ match }) => {
                     id="date"
                     name="date"
                     value={msg.date}
-                    // onChange={handleChange}
                   />
                 </div>
                 <div className="mb-3">

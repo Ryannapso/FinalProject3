@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateTicket = ({ match }) => {
@@ -77,7 +76,6 @@ const UpdateTicket = ({ match }) => {
                     id="id"
                     name="id"
                     value={ticket._id}
-                    // onChange={handleChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -91,7 +89,6 @@ const UpdateTicket = ({ match }) => {
                     id="problem"
                     name="problem"
                     value={ticket.problem}
-                    // onChange={handleChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -154,14 +151,7 @@ const UpdateTicket = ({ match }) => {
                   >
                     Update Ticket <i className="fa fa-pencil-square-o ms-6"></i>
                   </button>
-                  {/* <button
-                    type="submit"
-                    className="btn btn-outline-danger rounded-pill px-5 ms-5"
-                    onClick={ticketDelete}
-                  >
-                    Delete Message
-                    <i className="fa fa-trash  aria-hidden=true" ms-4></i>
-                  </button> */}
+                
                 </div>
               </form>
             </div>

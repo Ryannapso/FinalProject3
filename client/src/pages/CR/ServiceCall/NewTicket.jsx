@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../../App";
 
 const NewTicket = () => {
   const navigate = useNavigate();
@@ -11,19 +10,18 @@ const NewTicket = () => {
   const [status, setStatus] = useState("");
   const [assignedTo, SetAssignedTo] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
-  const [employee, setEmployee] = useState("");
-  const { userData, setUserData } = useContext(UserContext);
+
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const x = userData.user.phone;
+  
 
     Axios.post("http://localhost:3001/api/tickets", {
       problem: problem,
       status: status,
       assignedTo: assignedTo,
       customerPhone: customerPhone,
-      employeePhone: x,
+      
     })
       .then((res) => {
         if (res.status === 201) {
@@ -73,7 +71,7 @@ const NewTicket = () => {
                     type="text"
                     className="form-control"
                     id="assignedTo"
-                    //placeholder="assignedTo"
+                  
                     name="assignedTo"
                     onChange={(event) => {
                       SetAssignedTo(event.target.value);
@@ -131,7 +129,6 @@ const NewTicket = () => {
                     type="text"
                     className="form-control"
                     id="status"
-                    //placeholder="status"
                     name="status"
                     onChange={(event) => {
                       setStatus(event.target.value);

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useLinkClickHandler } from "react-router-dom";
-import { Table, Button, Form } from "react-bootstrap";
+
 import BootstrapTable from "react-bootstrap-table-next";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
@@ -19,22 +18,16 @@ const Phone = () => {
       .then((res) => setData(res.data));
   });
 
-  const idFormatter = (data, row) => {
-    return <Link to={`/serviceCall/updateTicket/${data}`}><Button variant="primary">
-    Edit Ticket
-  </Button></Link>;
-  };
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
       return { backgroundColor: "red", text: "bold" };
     }
   };
-  //make table using
+
   const columns = [
     {
       dataField: "_id",
       text: "Id",
-   
     },
     { dataField: "date", text: "date", sort: true, filter: textFilter() },
     {
@@ -58,7 +51,6 @@ const Phone = () => {
       filter: textFilter({ defaultValue: "Phone" }),
     },
   ];
-  //set pages
   const pagination = paginationFactory({
     page: 1,
     sizePerPage: 10,
@@ -80,7 +72,6 @@ const Phone = () => {
 
   return (
     <div>
-      {/* <h2> there are {ticketsSchema.length} post in the Database </h2> */}
       <BootstrapTable
         bootstrap4
         keyField="id"
@@ -89,32 +80,6 @@ const Phone = () => {
         pagination={pagination}
         filter={filterFactory()}
       />
-      {/* <Table striped bordered hover size="sm"  keyField='id' columns={columns} data={ticketsSchema}>
-        <thead>
-          <tr>
-            <th>date</th>
-            <th>status</th>
-            <th>problem</th>
-            <th>assignedTo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ticketsSchema.map((ticket) => {
-            return (
-              <tr>
-                <td>{ticket.date}</td>
-                <td>{ticket.status}</td>
-                <td>{ticket.problem}</td>
-                <td>{ticket.assignedTo}</td>
-
-                <Link key={ticket._id} to={`/updateMsg2/${ticket._id}`}>
-                  <Button> Update</Button>
-                </Link>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table> */}
     </div>
   );
 };

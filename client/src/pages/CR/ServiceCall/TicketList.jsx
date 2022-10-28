@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useLinkClickHandler } from "react-router-dom";
-import { Table, Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import {  Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
@@ -34,7 +34,6 @@ const TicketList = () => {
       dataField: "_id",
       text: "Edit",
       formatter: idFormatter,
-      //style: { backgroundColor: "yellow" },
     },
     { dataField: "date", text: "date", sort: true, filter: textFilter() },
     {
@@ -64,7 +63,6 @@ const TicketList = () => {
       filter: textFilter(),
     },
   ];
-  //set pages
   const pagination = paginationFactory({
     page: 1,
     sizePerPage: 10,

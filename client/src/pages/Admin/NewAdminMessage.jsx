@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { Link, useLinkClickHandler } from "react-router-dom";
-import { Table, Button, Form } from "react-bootstrap";
-import Alert from "react-bootstrap/Alert";
+import { Link } from "react-router-dom";
 
 import BootstrapTable from "react-bootstrap-table-next";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
@@ -13,21 +11,22 @@ import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css";
 
 const NewAdminMessage = () => {
-  //post
+ 
   const [title, setTitle] = useState("");
   const [msg, setMsg] = useState("");
   const [type, SetType] = useState("");
-  //const [date, setDate] = useState("");
+ 
 
   const addToList = () => {
     Axios.post("http://localhost:3001/api/AdminMessage", {
       title: title,
       msg: msg,
       type: type,
-      // date: date,
+      
     });
   };
-  //end of post
+
+
   const [data, setData] = useState([]);
   useEffect(() => {
     Axios.get("http://localhost:3001/api/AdminMessage").then((res) =>
@@ -90,11 +89,6 @@ const NewAdminMessage = () => {
     },
   });
 
-  //   useEffect(() => {
-  //     Axios
-  //       .get("http://localhost:3001/api/message")
-  //       .then((res) => setData(res.data));
-  //   });
 
   return (
     <div>

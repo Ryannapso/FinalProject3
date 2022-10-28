@@ -10,12 +10,6 @@ router.get("/", async (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-// router.get("/search", (req, res) => {
-//   Ticket.find({})
-//     .then((ticket) => res.json(ticket))
-//     .catch((err) => res.status(400).json("Error: " + err));
-// });
-
 router.get("/:id", (req, res) => {
   Ticket.findById(req.params.id)
     .then((ticket) => res.json(ticket))
@@ -25,7 +19,7 @@ router.get("/:id", (req, res) => {
 router.post(
   "/",
   asyncHandler(async (req, res) => {
-    const { problem, assignedTo, status, customerPhone,employeePhone } = req.body;
+    const { problem, assignedTo, status, customerPhone } = req.body;
     const customer = await Customer.findOne({ phone: customerPhone });
 
     if (customer) {
@@ -58,19 +52,5 @@ router.put("/:id", (req, res) => {
     .then(() => res.json("ticketsSchema updated"))
     .catch((err) => res.status(400).json("Error: " + err));
 });
-
-// //find
-// router.get("/search/:key", async (req, res) => {
-//   let data = await Ticket.find({
-//     $or: [
-//       // { assignedTo: { $regex: req.params.key } },
-//       // { phone: { $regex: req.params.key } },
-//       { status: { $regex: req.params.key } },
-//     ],
-//   });
-//   res.send(data);
-// });
-
-router.get("/");
 
 module.exports = router;

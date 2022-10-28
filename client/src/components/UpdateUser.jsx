@@ -8,8 +8,6 @@ const UpdateUser = ({ match }) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  //test pic
-  //const [item, setItem] = useState({ title: "", image: "" });
 
   const [user, setUser] = useState({
     name: "",

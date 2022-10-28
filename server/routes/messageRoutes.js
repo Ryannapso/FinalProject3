@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-let messageSchema = require("../models/messageModel");
+const messageSchema = require("../models/messageModel");
 
 
 

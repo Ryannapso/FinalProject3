@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
 import { UserContext } from "../../App";
 import { NavLink } from "react-router-dom";
 
 function Login() {
-  const { userData, setUserData } = useContext(UserContext);
+  const {setUserData } = useContext(UserContext);
 
   const [user, setUser] = useState({
     name: "",
@@ -16,7 +15,7 @@ function Login() {
     password: "",
     role: "",
   });
-  const [errorMsg, setErrorMsg] = useState();
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,20 +87,6 @@ function Login() {
           <div className="col-md-6 p-5">
             <h1 className="display-6 fw-bolder mb-5">Login</h1>
             <form onSubmit={handleSubmit}>
-              {/* <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">
-                  name
-                </label>
-                <input
-                  type="name"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  name="name"
-                  value={user.name}
-                  onChange={handleChange}
-                />
-              </div> */}
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">
                   email

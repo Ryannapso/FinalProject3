@@ -21,7 +21,7 @@ const About = () => {
               <hr className="w-0" />
               <p className="lead mb-4">
                 since 1998 our shop exist, we believe in personal relationship
-                with our costumers. we are located in : kfar kamma , 33 street.{" "}
+                with our costumers. we are located in : kfar kama , 33 street.{" "}
               </p>
               <h3 className="px-1 py-2">
                 <i className="fa fa-mobile me-2 fa-2x mb-4 text-primary"></i>{" "}

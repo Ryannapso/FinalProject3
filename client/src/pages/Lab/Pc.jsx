@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useLinkClickHandler } from "react-router-dom";
-import { Table, Button, Form, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
@@ -9,7 +9,6 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css";
-import cellEditFactory from "react-bootstrap-table2-editor";
 
 const Pc = () => {
   const [data, setData] = useState([]);
@@ -20,12 +19,12 @@ const Pc = () => {
       .then((res) => setData(res.data));
   });
 
-  // const [customersSchema, setCustomers] = useState([]);
-
   const idFormatter = (data, row) => {
-    return <Link to={`/serviceCall/updateTicket/${data}`}><Button variant="primary">
-    Edit Ticket
-  </Button></Link>;
+    return (
+      <Link to={`/serviceCall/updateTicket/${data}`}>
+        <Button variant="primary">Edit Ticket</Button>
+      </Link>
+    );
   };
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
@@ -33,13 +32,11 @@ const Pc = () => {
     }
   };
 
-  //make table using
   const columns = [
     {
       dataField: "_id",
       text: "Id",
       formatter: idFormatter,
-     
     },
     { dataField: "date", text: "date", sort: true, filter: textFilter() },
     {
@@ -70,7 +67,6 @@ const Pc = () => {
     },
   ];
 
-  //set pages
   const pagination = paginationFactory({
     page: 1,
     sizePerPage: 10,
@@ -99,35 +95,7 @@ const Pc = () => {
         data={data}
         pagination={pagination}
         filter={filterFactory()}
-
-        // cellEdit={cellEditFactory({ mode: "click" })}
       />
-      {/* <Table striped bordered hover size="sm"  keyField='id' columns={columns} data={ticketsSchema}>
-        <thead>
-          <tr>
-            <th>date</th>
-            <th>status</th>
-            <th>problem</th>
-            <th>assignedTo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ticketsSchema.map((ticket) => {
-            return (
-              <tr>
-                <td>{ticket.date}</td>
-                <td>{ticket.status}</td>
-                <td>{ticket.problem}</td>
-                <td>{ticket.assignedTo}</td>
-
-                <Link key={ticket._id} to={`/updateMsg2/${ticket._id}`}>
-                  <Button> Update</Button>
-                </Link>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table> */}
     </div>
   );
 };

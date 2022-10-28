@@ -14,10 +14,7 @@ const customersSchema = mongoose.Schema(
     address: {
       type: String,
     },
-    date: {
-      type: Date,
-      default: Date.now,
-    },
+
     tickets: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
   name: {
     type: String,
-    //required: true,
     maxlength: 15,
   },
   email: {
@@ -17,7 +16,6 @@ const userSchema = mongoose.Schema({
   },
   Lname: {
     type: String,
-    // required: true,
     maxlength: 15,
   },
   phone: {
@@ -27,7 +25,6 @@ const userSchema = mongoose.Schema({
   },
   location: {
     type: String,
-    //required: true,
     maxlength: 15,
   },
 
@@ -40,14 +37,9 @@ const userSchema = mongoose.Schema({
   },
   role: {
     type: String,
-    default: "user",
-    enum: ["admin", "cr", "tech", "user"],
+    default: "cr",
+    enum: ["admin", "cr", "tech"],
   },
-  // status: {
-  //   type: String,
-  //   default: "Open",
-  //   enum: ["Open", "Updated", "PC", "phone", "buildPc", "Admin", "Closed"],
-  // },
 });
 
 module.exports = mongoose.model("User", userSchema);

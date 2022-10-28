@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-let customersSchema = require("../models/customerModel");
+const customersSchema = require("../models/customerModel");
 
 router.get("/", async (req, res) => {
   await customersSchema
@@ -45,15 +44,5 @@ router.put("/:id", (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-//find
-router.get("/search/:key", async (req, res) => {
-  let data = await customersSchema.find({
-    $or: [
-      { name: { $regex: req.params.key } },
-      { phone: { $regex: req.params.key } },
-    ],
-  });
-  res.send(data);
-});
 
 module.exports = router;

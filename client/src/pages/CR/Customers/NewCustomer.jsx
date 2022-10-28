@@ -7,10 +7,8 @@ const NewCustomer = () => {
   const [email, setEmail] = useState("");
   const [phone, SetPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [timestamps, SetTimestamps] = useState("");
-  // const [problem, setProblem] = useState("");
-  // const [assignedTo, setAssignedTo] = useState("");
-  // const [status, setStatus] = useState("");
+  const [timestamps] = useState("");
+
 
   const addToList = () => {
     Axios.post("http://localhost:3001/api/customers", {

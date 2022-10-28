@@ -13,15 +13,16 @@ const messageSchema = mongoose.Schema({
   message: {
     type: String,
   },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
+
   status: {
     type: String,
     default: "open",
     enum: ["open", "Updated", "Answered", "Closed"],
   },
-});
+},
+{
+  timestamps: true,
+}
+);
 
 module.exports = mongoose.model("Message", messageSchema);
