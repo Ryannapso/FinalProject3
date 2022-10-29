@@ -34,11 +34,12 @@ import Pc from "./pages/Lab/Pc";
 import Phone from "./pages/Lab/Phone";
 
 //admin
-import MainPageMessages from "./pages/Admin/MainPageMessages";
+
 import NewAdminMessage from "./pages/Admin/NewAdminMessage";
 import UserList from "./pages/Admin/UserList";
 import UpdateAdminMessage from "./pages/Admin/UpdateAdminMessage";
 import Reports from "./pages/Admin/Reports";
+import AdminMessageList from "./pages/Admin/AdminMessageList";
 
 //like global var
 export const UserContext = createContext();
@@ -121,8 +122,8 @@ function App() {
           {/* Admin */}
           <Route path="/admin/userList" element={<UserList />} />
           <Route
-            path="/admin/mainPageMessages"
-            element={<MainPageMessages />}
+            path="/admin/AdminMessageList"
+            element={<AdminMessageList />}
           />
           <Route path="/admin/newAdminMessages" element={<NewAdminMessage />} />
           <Route

@@ -28,6 +28,8 @@ function MainPageMessages() {
               <Alert show={show} variant={item.type}>
                 <Alert.Heading>{item.title}</Alert.Heading>
                 <p>{item.msg}</p>
+                <p>{new Date(item.createdAt).toLocaleDateString
+                  ('he-IL')}</p>
                 <hr />
                 <div className="d-flex justify-content-end">
                   <Button

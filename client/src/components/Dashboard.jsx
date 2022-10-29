@@ -96,7 +96,10 @@ const Dashboard = () => {
                     <SidebarHeader> Admin</SidebarHeader>
                     <SubMenu title="Admin" icon={<FaUserTie />}>
                       <MenuItem icon={<FaRegEdit />}>
-                        Main Page Messages <Link to="/admin/newAdminMessages" />
+                       Admin Messages List<Link to="/admin/adminMessageList" />
+                      </MenuItem>
+                      <MenuItem icon={<FaRegEdit />}>
+                        new Admin Messages <Link to="/admin/newAdminMessages" />
                       </MenuItem>
                       <MenuItem icon={<FaPoll />}>
                         Reports <Link to="/admin/reports" />
