@@ -4,7 +4,7 @@ import { UserContext } from "../../App";
 import { NavLink } from "react-router-dom";
 
 function Login() {
-  const {setUserData } = useContext(UserContext);
+  const { setUserData } = useContext(UserContext);
 
   const [user, setUser] = useState({
     name: "",
@@ -15,7 +15,6 @@ function Login() {
     password: "",
     role: "",
   });
- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,12 +49,12 @@ function Login() {
         email: "",
         password: "",
         role: "",
-        
       });
 
       window.location = "/";
     } catch (err) {
       console.log(err);
+      alert(err);
     }
   };
 
@@ -75,14 +74,14 @@ function Login() {
           <div className="col-md-5 d-flex flex-column align-items-center text-white  justify-content-center form">
             <h1 className="display-4">Welcome Back</h1>
             <p className="lead text-center"> Enter your Credential to Login</p>
-            <h5 className="mb-4">OR</h5>
+            {/* <h5 className="mb-4">OR</h5>
             <NavLink
               to="/register"
               className="btn btn-outline-light 
             rounded-pill pb-2 w-50"
             >
               Register
-            </NavLink>
+            </NavLink> */}
           </div>
           <div className="col-md-6 p-5">
             <h1 className="display-6 fw-bolder mb-5">Login</h1>

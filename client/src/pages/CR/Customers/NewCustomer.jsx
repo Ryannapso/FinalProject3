@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const NewCustomer = () => {
+  const navigate = useNavigate();
+
   //post
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, SetPhone] = useState("");
   const [address, setAddress] = useState("");
   const [timestamps] = useState("");
-
 
   const addToList = () => {
     Axios.post("http://localhost:3001/api/customers", {
@@ -17,8 +19,9 @@ const NewCustomer = () => {
       address: address,
       timestamps: timestamps,
       phone: phone,
-     
-    });
+    }).then();
+    alert("New customer Added");
+    navigate("/customersList");
   };
   //end of post
 
@@ -43,7 +46,7 @@ const NewCustomer = () => {
               <form>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                  Customer Name
+                    Customer Name
                   </label>
                   <input
                     required
@@ -60,7 +63,7 @@ const NewCustomer = () => {
 
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                  Customer phone
+                    Customer phone
                   </label>
                   <input
                     required
@@ -109,8 +112,7 @@ const NewCustomer = () => {
                     }}
                   />
                 </div>
-           
-                
+
                 <button
                   type="submit"
                   className="btn btn-outline-primary rounded-pill px-4"

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
-import {  Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import BootstrapTable from "react-bootstrap-table-next";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
@@ -19,12 +19,12 @@ const AdminMessageList = () => {
     );
   });
 
-
-
   const idFormatter = (data, row) => {
-    return <Link to={`/admin/updateAdminMessage/${data}`}><Button variant="primary">
-    Edit
-  </Button></Link>;
+    return (
+      <Link to={`/admin/updateAdminMessage/${data}`}>
+        <Button variant="primary">Edit</Button>
+      </Link>
+    );
   };
 
   const columns = [
@@ -32,7 +32,6 @@ const AdminMessageList = () => {
       dataField: "_id",
       text: "Edit",
       formatter: idFormatter,
-     
     },
     { dataField: "title", text: "title", sort: true, filter: textFilter() },
     {
@@ -48,7 +47,7 @@ const AdminMessageList = () => {
       filter: textFilter(),
     },
     {
-      dataField: "date",
+      dataField: "createdAt",
       text: "date",
       sort: true,
       filter: textFilter(),

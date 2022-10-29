@@ -22,6 +22,7 @@ import {
   FaUserPlus,
   FaUserTie,
   FaListAlt,
+  
 } from "react-icons/fa";
 
 import { UserContext } from "../App";
@@ -106,6 +107,9 @@ const Dashboard = () => {
                       </MenuItem>
                       <MenuItem icon={<FaListAlt />}>
                         User List <Link to="/admin/userList" />
+                      </MenuItem>
+                      <MenuItem icon={<FaUserPlus />}>
+                        NewUser <Link to="/register" />
                       </MenuItem>
                     </SubMenu>
                   </>

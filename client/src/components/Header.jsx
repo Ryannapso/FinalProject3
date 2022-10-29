@@ -96,12 +96,7 @@ const Header = () => {
               >
                 <i className="fa fa-sign-in me-2"></i> Login
               </NavLink>
-              <NavLink
-                to="/register"
-                className="btn btn-outline-primary ms-2 px-4 rounded-pill"
-              >
-                <i className="fa fa-user-plus me-2"></i>Register
-              </NavLink>
+           
             </Nav>
           )}
         </div>
