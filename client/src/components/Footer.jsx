@@ -1,10 +1,23 @@
 import React from "react";
-
+import { MDBFooter } from "mdb-react-ui-kit";
 
 const Footer = () => {
   return (
-    <div>
-      <footer className=" footer text-white" >
+    <footer className=" footer text-white">
+      <footer>
+        <MDBFooter>
+          <div
+            className="text-center p-3"
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+          >
+            &copy; {new Date().getFullYear()} Copyright:{" "}
+            <a >
+              Moshe & ryan
+            </a>
+          </div>
+        </MDBFooter>
+
+        {/* <footer className=" footer text-white" >
         <div className="container">
           <footer className="py-5">
             <div className="row">
@@ -95,8 +108,9 @@ const Footer = () => {
           </footer>
         </div>
      
+      </footer> */}
       </footer>
-    </div>
+    </footer>
   );
 };
 
