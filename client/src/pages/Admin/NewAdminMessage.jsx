@@ -88,7 +88,7 @@ const NewAdminMessage = () => {
                       SetType(event.target.value);
                     }}
                   >
-                    <option value="success">success-green</option>
+                    <option value="Success">success-green</option>
                     <option value="danger">danger-red</option>
                     <option value="warning">warning-yellow</option>
                   </select>

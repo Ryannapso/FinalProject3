@@ -20,9 +20,10 @@ function MainPageMessages() {
   const [show, setShow] = useState(true);
   return (
     <div>
+      
       {data.map((item) => {
         return (
-          <div>
+          <div className="alerts">
            
             <>
               <Alert show={show} variant={item.type}>

@@ -30,9 +30,9 @@
 
 /* Footer */
 .footer {
-  position: relative;
+  position: fixed;
   width: 100%;
- 
+
   bottom: 0;
   background: rgb(0, 101, 219);
   background: linear-gradient(
@@ -132,9 +132,12 @@ body {
   margin-right: 1rem;
 }
 
+.sidebar {
+  position: relative;
+}
+
 #sidebar .pro-sidebar {
-  color: #ffffff; 
- 
+  color: #ffffff;
 }
 /* #sidebar .pro-sidebar-inner {
     background-color: #000000; 

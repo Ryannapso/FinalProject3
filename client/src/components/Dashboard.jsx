@@ -22,7 +22,6 @@ import {
   FaUserPlus,
   FaUserTie,
   FaListAlt,
-  
 } from "react-icons/fa";
 
 import { UserContext } from "../App";
@@ -30,7 +29,7 @@ import { UserContext } from "../App";
 const Dashboard = () => {
   const { userData } = useContext(UserContext);
   return (
-    <div id="sidebar">   
+    <div className="sidebar">
       <div>
         <Row>
           <Col sm={5}>
@@ -51,8 +50,6 @@ const Dashboard = () => {
                       <MenuItem icon={<FaUserPlus />}>
                         Customers Lists <Link to="/customersList" />
                       </MenuItem>
-
-                
                     </SubMenu>
 
                     <SubMenu title="Service Call" icon={<FaCalendarAlt />}>
@@ -64,8 +61,6 @@ const Dashboard = () => {
                         new Ticket
                         <Link to="/serviceCall/newTicket" />{" "}
                       </MenuItem>
-
-                     
                     </SubMenu>
                   </div>
                 ) : (
@@ -97,7 +92,8 @@ const Dashboard = () => {
                     <SidebarHeader> Admin</SidebarHeader>
                     <SubMenu title="Admin" icon={<FaUserTie />}>
                       <MenuItem icon={<FaRegEdit />}>
-                       Admin Messages List<Link to="/admin/adminMessageList" />
+                        Admin Messages List
+                        <Link to="/admin/adminMessageList" />
                       </MenuItem>
                       <MenuItem icon={<FaRegEdit />}>
                         new Admin Messages <Link to="/admin/newAdminMessages" />
