@@ -7,15 +7,39 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const BuildPc = () => {
   const [ticketsSchema, setTickets] = useState([]);
 
+  const dateFormatter = (data, row) => {
+    return new Date(data).toLocaleDateString("he-IL");
+  };
+  const idFormatter = (data, row) => {
+    return (
+      <Link to={`/serviceCall/updateTicket/${data}`}>
+        <Button variant="primary">Edit Ticket</Button>
+      </Link>
+    );
+  };
+
   const columns = [
-    { dataField: "_id", text: "Id" },
-    { dataField: "date", text: "date", sort: true, filter: textFilter() },
+    { dataField: "_id", text: "Id", formatter: idFormatter },
+    {
+      dataField: "date",
+      text: "date",
+      sort: true,
+      filter: textFilter(),
+      formatter: dateFormatter,
+    },
     { dataField: "status", text: "status", sort: true, filter: textFilter() },
-    { dataField: "problem", text: "problem", sort: true, filter: textFilter() },
+    {
+      dataField: "problem",
+      text: "problem",
+      sort: true,
+      filter: textFilter(),
+    },
     {
       dataField: "customerPhone",
       text: "customerPhone",
@@ -64,11 +88,8 @@ const BuildPc = () => {
         pagination={pagination}
         filter={filterFactory()}
       />
-     
     </div>
   );
 };
 
-
-
-export default BuildPc
+export default BuildPc;

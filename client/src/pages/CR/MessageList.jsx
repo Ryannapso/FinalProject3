@@ -33,6 +33,9 @@ const MessageList = () => {
       return { backgroundColor: "red", text: "bold" };
     }
   };
+  const dateFormatter = (data, row) => {
+    return new Date(data).toLocaleDateString("he-IL");
+  };
 
   const columns = [
     {
@@ -45,6 +48,7 @@ const MessageList = () => {
       text: "Created At",
       sort: true,
       filter: textFilter(),
+      formatter: dateFormatter,
     },
     {
       dataField: "status",

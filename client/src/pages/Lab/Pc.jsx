@@ -26,6 +26,11 @@ const Pc = () => {
       </Link>
     );
   };
+
+  const dateFormatter = (data, row) => {
+    return new Date(data).toLocaleDateString("he-IL");
+  };
+
   const rowStyle = (row, rowIndex) => {
     if (row === "open") {
       return { backgroundColor: "red", text: "bold" };
@@ -38,7 +43,13 @@ const Pc = () => {
       text: "Id",
       formatter: idFormatter,
     },
-    { dataField: "date", text: "date", sort: true, filter: textFilter() },
+    {
+      dataField: "date",
+      text: "date",
+      sort: true,
+      filter: textFilter(),
+      formatter: dateFormatter,
+    },
     {
       dataField: "status",
       text: "status",

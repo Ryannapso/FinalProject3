@@ -25,8 +25,8 @@ const UpdateAdminMessage = ({ match }) => {
     axios
       .put("http://localhost:3001/api/AdminMessage/" + id, ticket)
       .then((ticket) => console.log(ticket));
-      alert("msg updated");
-      navigate("/dashboard");
+    alert("msg updated");
+    navigate("/dashboard");
   };
 
   const ticketDelete = () => {
@@ -90,7 +90,7 @@ const UpdateAdminMessage = ({ match }) => {
                     id="title"
                     name="title"
                     value={ticket.title}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="mb-3">

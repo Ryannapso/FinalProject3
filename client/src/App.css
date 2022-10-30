@@ -131,9 +131,16 @@ body {
   margin-left: 1rem;
   margin-right: 1rem;
 }
+.alerts{
+  position: relative;
+  width: 750px;
+  left: 200px;
+}
+
 
 .sidebar {
-  position: relative;
+  position: fixed;
+  height: 500px;
 }
 
 #sidebar .pro-sidebar {

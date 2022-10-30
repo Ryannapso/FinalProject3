@@ -23,13 +23,21 @@ const Phone = () => {
       return { backgroundColor: "red", text: "bold" };
     }
   };
-
+  const dateFormatter = (data, row) => {
+    return new Date(data).toLocaleDateString("he-IL");
+  };
   const columns = [
     {
       dataField: "_id",
       text: "Id",
     },
-    { dataField: "date", text: "date", sort: true, filter: textFilter() },
+    {
+      dataField: "date",
+      text: "date",
+      sort: true,
+      filter: textFilter(),
+      formatter: dateFormatter,
+    },
     {
       dataField: "status",
       text: "status",

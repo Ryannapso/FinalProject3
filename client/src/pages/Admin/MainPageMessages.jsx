@@ -23,23 +23,16 @@ function MainPageMessages() {
       
       {data.map((item) => {
         return (
+          
           <div className="alerts">
-           
+     
             <>
               <Alert show={show} variant={item.type}>
-                <Alert.Heading>{item.title}</Alert.Heading>
-                <p>{item.msg}</p>
+                
+                <p> <h3>{item.title}</h3>  {item.msg}</p>
                 <p>{new Date(item.createdAt).toLocaleDateString
                   ('he-IL')}</p>
-                <hr />
-                <div className="d-flex justify-content-end">
-                  <Button
-                    onClick={() => setShow(false)}
-                    variant="outline-success"
-                  >
-                    Close
-                  </Button>
-                </div>
+                
               </Alert>
             </>
           </div>

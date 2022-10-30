@@ -26,6 +26,9 @@ const AdminMessageList = () => {
       </Link>
     );
   };
+  const dateFormatter = (data, row) => {
+    return new Date(data).toLocaleDateString("he-IL");
+  };
 
   const columns = [
     {
@@ -51,6 +54,7 @@ const AdminMessageList = () => {
       text: "date",
       sort: true,
       filter: textFilter(),
+      formatter: dateFormatter,
     },
   ];
 
