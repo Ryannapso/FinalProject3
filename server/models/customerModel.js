@@ -21,6 +21,12 @@ const customersSchema = mongoose.Schema(
         ref: "Ticket",
       },
     ],
+    pcBuilds: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "PCBuild",
+      },
+    ],
   },
 
   {

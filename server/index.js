@@ -11,6 +11,7 @@ const ticketsRoutes = require("./routes/ticketsRoutes");
 const AdminMessageRoutes = require("./routes/AdminMessageRoutes");
 const reportsRoutes = require("./routes/reportRoutes");
 const { errorHandler } = require("./middleware/errorMiddleware");
+const pcBuildRoutes = require("./routes/pcBuildRoutes");
 
 connectDB();
 
@@ -26,6 +27,7 @@ app.use("/api/customers", customersRoutes);
 app.use("/api/tickets", ticketsRoutes);
 app.use("/api/reports", reportsRoutes);
 app.use("/api/AdminMessage", AdminMessageRoutes);
+app.use("/api/pcBuilds", pcBuildRoutes);
 app.use(errorHandler);
 
 app.listen(port, () => {

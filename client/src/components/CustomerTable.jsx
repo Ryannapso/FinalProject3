@@ -31,7 +31,6 @@ function CustomerTable(props) {
                 <Link to={`/serviceCall/updateCustomer/${item._id}`}>
                   <Button variant="primary">Edit Customer</Button>
                 </Link>
-                ;
               </td>
             </tr>
           );
