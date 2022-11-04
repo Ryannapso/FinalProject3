@@ -11,13 +11,6 @@ router.get("/", async (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.get("/test", async (req, res) => {
-  await Ticket.findOne({ problem: 'broken phone'})
-    .populate("customer")
-    .then((ticket) => res.json(ticket))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
-
 router.get("/:id", (req, res) => {
   Ticket.findById(req.params.id)
     .then((ticket) => res.json(ticket))

@@ -5,12 +5,11 @@ const Customer = require("../models/customerModel");
 const asyncHandler = require("express-async-handler");
 
 router.get("/", asyncHandler(async (req, res) => {
-  
   await PCBuild.find()
+    .populate("customer")
     .then((pcBuild) => res.json(pcBuild))
     .catch((err) => res.status(400).json("Error: " + err));
 }));
-
 
 router.get("/:id", (req, res) => {
   PCBuild.findById(req.params.id)
@@ -36,6 +35,7 @@ router.post(
         cpuCooler,
         status,
         customerPhone,
+        customer: customer.id,
       });
 
       customer.pcBuilds.push(pcBuild._id);

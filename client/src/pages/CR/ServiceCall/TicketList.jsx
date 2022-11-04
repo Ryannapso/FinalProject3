@@ -9,6 +9,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css";
+import CustomerDetails from "../../../components/CustomerDetails";
 
 const TicketList = () => {
   const [data, setData] = useState([]);
@@ -36,7 +37,7 @@ const TicketList = () => {
   };
 
   const customerFormatter = (data, row) => {
-    return data.name;
+    return <CustomerDetails customer={data}></CustomerDetails>;
   }
 
   
