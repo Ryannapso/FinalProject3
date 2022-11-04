@@ -6,6 +6,14 @@ const asyncHandler = require("express-async-handler");
 
 router.get("/", async (req, res) => {
   await Ticket.find()
+    .populate('customer')
+    .then((ticket) => res.json(ticket))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.get("/test", async (req, res) => {
+  await Ticket.findOne({ problem: 'broken phone'})
+    .populate("customer")
     .then((ticket) => res.json(ticket))
     .catch((err) => res.status(400).json("Error: " + err));
 });
@@ -28,7 +36,7 @@ router.post(
         assignedTo,
         status,
         customerPhone,
-        employeePhone,
+        customer: customer.id
       });
 
       customer.tickets.push(ticket._id);

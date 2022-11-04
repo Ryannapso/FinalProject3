@@ -17,6 +17,7 @@ const ticketsSchema = mongoose.Schema(
     },
     customerPhone: {
       type: String,
+      unique: true,
     },
     customer: {
       type: mongoose.Schema.Types.ObjectId,

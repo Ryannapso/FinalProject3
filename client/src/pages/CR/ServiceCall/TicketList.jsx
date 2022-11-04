@@ -34,6 +34,12 @@ const TicketList = () => {
   const dateFormatter = (data, row) => {
     return new Date(data).toLocaleDateString("he-IL");
   };
+
+  const customerFormatter = (data, row) => {
+    return data.name;
+  }
+
+  
   //make table using
   const columns = [
     {
@@ -42,7 +48,15 @@ const TicketList = () => {
       formatter: idFormatter,
     },
     {
-      dataField: "date",
+      dataField: "customer",
+      text: "Customer",
+      sort: true,
+      filter: textFilter(),
+      formatter: customerFormatter,
+    },
+
+    {
+      dataField: "createdAt",
       text: "date",
       sort: true,
       filter: textFilter(),
@@ -57,20 +71,8 @@ const TicketList = () => {
     },
     { dataField: "problem", text: "problem", sort: true, filter: textFilter() },
     {
-      dataField: "customerPhone",
-      text: "customerPhone",
-      sort: true,
-      filter: textFilter(),
-    },
-    {
       dataField: "assignedTo",
       text: "assignedTo",
-      sort: true,
-      filter: textFilter(),
-    },
-    {
-      dataField: "employeePhone",
-      text: "employeePhone",
       sort: true,
       filter: textFilter(),
     },

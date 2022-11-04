@@ -5,6 +5,7 @@ const Customer = require("../models/customerModel");
 const asyncHandler = require("express-async-handler");
 
 router.get("/", asyncHandler(async (req, res) => {
+  
   await PCBuild.find()
     .then((pcBuild) => res.json(pcBuild))
     .catch((err) => res.status(400).json("Error: " + err));
