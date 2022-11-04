@@ -10,6 +10,7 @@ router.get("/", asyncHandler(async (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 }));
 
+
 router.get("/:id", (req, res) => {
   PCBuild.findById(req.params.id)
     .then((pcBuild) => res.json(pcBuild))

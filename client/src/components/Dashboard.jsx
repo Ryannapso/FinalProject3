@@ -79,7 +79,7 @@ const Dashboard = () => {
                         Phone <Link to="/lab/phone" />
                       </MenuItem>
                       <MenuItem icon={<FaLaptopMedical />}>
-                        Build PC <Link to="/lab/buildPc" />
+                        Build PC <Link to="/lab/PCBuild" />
                       </MenuItem>
                     </SubMenu>
                   </>

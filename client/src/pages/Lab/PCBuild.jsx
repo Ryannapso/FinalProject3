@@ -38,13 +38,7 @@ const PCBuild = () => {
     //   formatter: dateFormatter,
     // },
     { dataField: "status", text: "status", sort: true, filter: textFilter() },
-    {
-      dataField: "customer",
-      text: "Customer",
-      sort: true,
-      filter: textFilter(),
-      formatter: customerFormatter,
-    },
+    
     {
       dataField: "customerPhone",
       text: "customerPhone",
