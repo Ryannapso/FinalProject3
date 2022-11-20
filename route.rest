@@ -41,8 +41,8 @@ POST http://localhost:3001/api/tickets/
 Content-Type: application/json
 
 {
-    "problem": "my phone broken",
-    "assignedTo": "Phone",
+    "problem": "my phodda12ddd1212sse broke2dd22n",
+    "assignedTo": "cr",
     "status":"open",
     "customerPhone":"0504206262"
     
@@ -60,7 +60,7 @@ Content-Type: application/json
 {
     "name": "moshe maman",
     "email": "moshem@maman",
-    "phone": "0504206262",
+    "phone": "0501234567",
     "address":"tevria"
 }
 

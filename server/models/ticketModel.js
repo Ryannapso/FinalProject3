@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
 const ticketsSchema = mongoose.Schema(
@@ -17,7 +18,6 @@ const ticketsSchema = mongoose.Schema(
     },
     customerPhone: {
       type: String,
-      unique: true,
     },
     customer: {
       type: mongoose.Schema.Types.ObjectId,
