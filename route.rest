@@ -37,12 +37,13 @@ GET http://localhost:3001/api/customers/search/0
 
 ###
 
-POST http://localhost:3001/api/tickets/
+POST http://localhost:3001/api/pcBuilds/
 Content-Type: application/json
 
 {
-    "problem": "my phodda12ddd1212sse broke2dd22n",
-    "assignedTo": "cr",
+  "cpu":"intel",
+  "motherboard":"asus",
+  "memory":"16gb",
     "status":"open",
     "customerPhone":"0504206262"
     
@@ -51,7 +52,7 @@ Content-Type: application/json
 ###
 
 
-GET http://localhost:3001/api/customers
+GET http://localhost:3001/api/PcBuilds/637a114788fb9c5a9314fb1b
 ###
 
 POST http://localhost:3001/api/customers

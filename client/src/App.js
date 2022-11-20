@@ -28,11 +28,11 @@ import NewTicket from "./pages/CR/ServiceCall/NewTicket";
 import UpdateTicket from "./pages/CR/ServiceCall/UpdateTicket";
 import TicketList from "./pages/CR/ServiceCall/TicketList";
 
-
 //lab
 import PCBuild from "./pages/Lab/PCBuild";
 import Pc from "./pages/Lab/Pc";
 import Phone from "./pages/Lab/Phone";
+import UpdatePcBuilds from "./pages/Lab/UpdatePcBuilds";
 
 //admin
 
@@ -117,6 +117,7 @@ function App() {
           <Route path="/serviceCall/ticketList" element={<TicketList />} />
           {/* Lab */}
           <Route path="/lab/PCBuild" element={<PCBuild />} />
+          <Route path="/lab/UpdatePcBuilds/:id" element={<UpdatePcBuilds />} />
           <Route path="/lab/pc" element={<Pc />} />
           <Route path="/lab/phone" element={<Phone />} />
 

@@ -29,7 +29,7 @@ const PCBuild = () => {
 
   const idFormatter = (data, row) => {
     return (
-      <Link to={`/serviceCall/updatePCBuild/${data}`}>
+      <Link to={`/lab/UpdatePcBuilds/${data}`}>
         <Button variant="primary">Edit PCBuild</Button>
       </Link>
     );
@@ -52,13 +52,7 @@ const PCBuild = () => {
       formatter: dateFormatter,
     },
     { dataField: "status", text: "status", sort: true, filter: textFilter() },
-    {
-      dataField: "cpu",
-      text: "Build Details",
-      sort: true,
-      filter: textFilter(),
-      formatter: buildFormatter,
-    },
+ 
   ];
   const pagination = paginationFactory({
     page: 1,
