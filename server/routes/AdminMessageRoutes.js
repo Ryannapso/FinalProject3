@@ -8,14 +8,14 @@ router.get("/", async(req, res) => {
  await AdminMessageSchema
     .find()
     .then((msgs) => res.json(msgs))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json(err));
 });
 
 router.get("/:id", (req, res) => {
   AdminMessageSchema
     .findById(req.params.id)
     .then((msgs) => res.json(msgs))
-    .catch((err) => res.json("Error: +err"));
+    .catch((err) => res.json(err));
 });
 
 router.post("/", (req, res) => {
@@ -28,21 +28,21 @@ router.post("/", (req, res) => {
 
   newMsgs
     .save()
-    .then((msgs) => res.json("New Msgs Added"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then((msgs) => res.json("Message had been added"))
+    .catch((err) => res.status(400).json(err));
 });
 
 router.delete("/:id", (req, res) => {
   AdminMessageSchema
     .findByIdAndDelete(req.params.id)
-    .then(() => res.json("msg deleted"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then(() => res.json("Message has been deleted"))
+    .catch((err) => res.status(400).json(err));
 });
 
 router.put("/:id", (req, res) => {
   AdminMessageSchema
     .findByIdAndUpdate(req.params.id, { $set: req.body })
-    .then(() => res.json("AdminMessageSchema updated"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then(() => res.json("Message has been updated"))
+    .catch((err) => res.status(400).json(err));
 });
 module.exports = router;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UpdateTicket = ({ match }) => {
   const navigate = useNavigate();
@@ -24,16 +25,25 @@ const UpdateTicket = ({ match }) => {
   const ticketUpdate = () => {
     axios
       .put("http://localhost:3001/api/tickets/" + id, ticket)
-      .then((ticket) => console.log(ticket));
-    alert("ticket updated");
+      .then((res) => toast.success(res.data))
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
     navigate("/serviceCall/ticketList");
+    
   };
 
   const ticketDelete = () => {
     axios
       .delete("http://localhost:3001/api/tickets/" + id)
-      .then((res) => console.log(res.status));
-    alert("ticket deleted");
+      .then((res) => toast.success(res.data))
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
     navigate("/serviceCall/ticketList");
   };
 
@@ -151,7 +161,14 @@ const UpdateTicket = ({ match }) => {
                   >
                     Update Ticket <i className="fa fa-pencil-square-o ms-6"></i>
                   </button>
-                
+                  <button
+                    type="submit"
+                    className="btn btn-outline-danger rounded-pill px-5 ms-5"
+                    onClick={ticketDelete}
+                  >
+                    Delete Ticket{" "}
+                    <i className="fa fa-trash  aria-hidden=true" ms-4></i>
+                  </button>
                 </div>
               </form>
             </div>

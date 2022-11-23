@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 const NewAdminMessage = () => {
   const navigate = useNavigate();
@@ -14,8 +16,15 @@ const NewAdminMessage = () => {
       title: title,
       msg: msg,
       type: type,
-    }).then();
-    alert("New Message Added");
+    })
+      .then((res) => {
+        toast.success(res.data);
+      })
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
     navigate("/dashboard");
   };
 
@@ -56,14 +65,14 @@ const NewAdminMessage = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                    MSG
+                    Message
                   </label>
                   <textarea
                     required
                     type="text"
                     className="form-control"
                     id="msg"
-                    placeholder="msg"
+                    placeholder="message"
                     name="msg"
                     onChange={(event) => {
                       setMsg(event.target.value);

@@ -4,6 +4,7 @@ const AdminMessageSchema = mongoose.Schema(
   {
     title: {
       type: String,
+      required: true,
     },
     msg: {
       type: String,
@@ -11,10 +12,6 @@ const AdminMessageSchema = mongoose.Schema(
     type: {
       type: String,
     },
-    // date: {
-    //   type: Date,
-    //   default: Date.now,
-    // },
   },
   {
     timestamps: true,

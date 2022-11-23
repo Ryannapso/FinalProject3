@@ -41,7 +41,7 @@ router.post("/register", async (req, res) => {
       newUser
         .save()
         .then((user) => res.json(user))
-        .catch((err) => res.status(400).json("Error: " + err));
+        .catch((err) => res.status(400).json(err));
     });
   });
 });
@@ -53,21 +53,22 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
-  
-  //test if user exist
-  if (!user) {
-    return res.status(400).json({ msg: "User doesn't exist" });
-  }
+
   //!req.body.password ||
   //test to check if he provide a user name or password or mail
   if (!req.body.password || !req.body.email) {
     return res.status(400).json({ msg: "Please enter all fields" });
   }
 
+  //test if user exist
+  if (!user) {
+    return res.status(400).json({ msg: "User doesn't exist" });
+  }
+
   //after we found the user we use compare to match the hash passwords
   bcrypt.compare(req.body.password, user.password, function (err, response) {
     if (!response) {
-      return res.status(400).send({ msg: "Authentication Error" });
+      return res.status(400).send({ msg: "Wrong Password" });
     } else {
       //jwt validations
       const token = jwt.sign({ _id: user.id }, process.env.JWT_SECRET);
@@ -112,7 +113,7 @@ router.get("/profile", auth, async (req, res) => {
 router.delete("/:id", (req, res) => {
   User.findByIdAndDelete(req.params.id)
     .then(() => res.json("User deleted"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json(err));
 });
 
 //valid token for protected routes
@@ -145,7 +146,7 @@ router.post("/tokenIsValid", async (req, res) => {
 router.get("/", (req, res) => {
   User.find()
     .then((msgs) => res.json(msgs))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json(err));
 });
 //update
 
@@ -159,7 +160,7 @@ router.delete("/update/:id", (req, res) => {});
 router.put("/update/:id", (req, res) => {
   User.findByIdAndUpdate(req.params.id, { $set: req.body })
     .then(() => res.json("UserSchema updated"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json(err));
 });
 
 router.post("/register/admin", (req, res) => {
@@ -176,7 +177,7 @@ router.post("/register/admin", (req, res) => {
   newUser
     .save()
     .then((user) => res.json("New UserAdded"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json(err));
 });
 
 module.exports = router;

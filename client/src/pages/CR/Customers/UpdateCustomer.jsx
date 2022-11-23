@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UpdateCustomer = ({ match }) => {
   const navigate = useNavigate();
@@ -26,16 +27,24 @@ const UpdateCustomer = ({ match }) => {
   const UserUpdate = () => {
     axios
       .put("http://localhost:3001/api/customers/" + id, user)
-      .then((user) => console.log(user));
-    alert("user updated");
+      .then((res) => toast.success(res.data))
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
     navigate("/customersList");
   };
 
   const userDelete = () => {
     axios
       .delete("http://localhost:3001/api/customers/" + id)
-      .then((res) => console.log(res.status));
-    alert("user deleted");
+      .then((res) => toast.success(res.data))
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
     navigate("/customersList");
   };
 

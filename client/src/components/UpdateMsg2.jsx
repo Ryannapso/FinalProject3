@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
 
 const UpdateMsg2 = ({ match }) => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [msg, setMsg] = useState({
@@ -19,22 +22,31 @@ const UpdateMsg2 = ({ match }) => {
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/message/" + id)
-      .then((response) => setMsg(response.data));
+      .then((response) => setMsg(response.data))
   }, []);
 
   const MsgUpdate = () => {
     axios
       .put("http://localhost:3001/api/message/" + id, msg)
-      .then((msg) => console.log(msg));
-    window.location = "/messageList";
+      .then((res) => toast.success(res.data))
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
+    navigate("/messageList");
   };
 
   const msgDelete = () => {
     axios
       .delete("http://localhost:3001/api/message/" + id)
-      .then((res) => console.log(res.status));
-    alert("msg deleted");
-    window.location = "/messageList";
+      .then((res) => toast.success(res.data))
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
+    navigate("/messageList");
   };
 
   const handleChange = (e) => {
@@ -65,7 +77,7 @@ const UpdateMsg2 = ({ match }) => {
             </div>
             <div className="col-md-6">
               <form>
-              <div className="mb-3">
+                <div className="mb-3">
                   <label htmlFor="name" className="form-label">
                     id
                   </label>

@@ -7,14 +7,14 @@ router.get("/", async (req, res) => {
     .find().populate('tickets')
     .populate('pcBuilds')
     .then((customer) => res.json(customer))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json(err));
 });
 
 router.get("/:id", (req, res) => {
   customersSchema
     .findById(req.params.id)
     .then((customer) => res.json(customer))
-    .catch((err) => res.json("Error: +err"));
+    .catch((err) => res.json(err));
 });
 
 router.post("/", (req, res) => {
@@ -28,21 +28,21 @@ router.post("/", (req, res) => {
   newCustomer
     .save()
     .then((customer) => res.json("New customer Added"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .catch((err) => res.status(400).json(err));
 });
 
 router.delete("/:id", (req, res) => {
   customersSchema
     .findByIdAndDelete(req.params.id)
-    .then(() => res.json("customer deleted"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then(() => res.json("Customer has been deleted"))
+    .catch((err) => res.status(400).json(err));
 });
 
 router.put("/:id", (req, res) => {
   customersSchema
     .findByIdAndUpdate(req.params.id, { $set: req.body })
-    .then(() => res.json("customersSchema updated"))
-    .catch((err) => res.status(400).json("Error: " + err));
+    .then(() => res.json("Customer has been updated"))
+    .catch((err) => res.status(400).json(err));
 });
 
 

@@ -14,7 +14,7 @@ router.get(
       createdAt: { $gte: start, $lt: end },
     })
       .then((ticket) => res.json(ticket))
-      .catch((err) => res.status(400).json("Error: " + err));
+      .catch((err) => res.status(400).json(err));
   })
 );
 

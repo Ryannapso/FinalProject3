@@ -1,50 +1,64 @@
 const express = require("express");
 const router = express.Router();
 const messageSchema = require("../models/messageModel");
+const asyncHandler = require("express-async-handler");
 
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    await messageSchema
+      .find()
+      .then((msgs) => res.json(msgs))
+      .catch((err) => res.status(400).json(err));
+  })
+);
 
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    await messageSchema
+      .findById(req.params.id)
+      .then((msgs) => res.json(msgs))
+      .catch((err) => res.json(err));
+  })
+);
 
-router.get("/", (req, res) => {
-  messageSchema
-    .find()
-    .then((msgs) => res.json(msgs))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const newMsgs = new messageSchema({
+      name: req.body.name,
+      email: req.body.email,
+      message: req.body.message,
+      status: req.body.status,
+      date: req.body.status,
+      phone: req.body.phone,
+    });
 
-router.get("/:id", (req, res) => {
-  messageSchema
-    .findById(req.params.id)
-    .then((msgs) => res.json(msgs))
-    .catch((err) => res.json("Error: +err"));
-});
+    await newMsgs
+      .save()
+      .then(() => res.json("Message sent !"))
+      .catch((err) => res.status(400).json(err));
+  })
+);
 
-router.post("/", (req, res) => {
-  const newMsgs = new messageSchema({
-    name: req.body.name,
-    email: req.body.email,
-    message: req.body.message,
-    status: req.body.status,
-    date: req.body.status,
-    phone: req.body.phone,
-  });
+router.delete(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    await messageSchema
+      .findByIdAndDelete(req.params.id)
+      .then(() => res.json("Message has been deleted !"))
+      .catch((err) => res.status(400).json(err));
+  })
+);
 
-  newMsgs
-    .save()
-    .then((msgs) => res.json("New Msgs Added"))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
-
-router.delete("/:id", (req, res) => {
-  messageSchema
-    .findByIdAndDelete(req.params.id)
-    .then(() => res.json("msg deleted"))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
-
-router.put("/:id", (req, res) => {
-  messageSchema
-    .findByIdAndUpdate(req.params.id, { $set: req.body })
-    .then(() => res.json("messageSchema updated"))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
+router.put(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    await messageSchema
+      .findByIdAndUpdate(req.params.id, { $set: req.body })
+      .then(() => res.json("Message has been updated !"))
+      .catch((err) => res.status(400).json(err));
+  })
+);
 module.exports = router;

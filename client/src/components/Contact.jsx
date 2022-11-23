@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
 
 const Contact = () => {
+  const navigate = useNavigate();
   //post
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,7 +19,11 @@ const Contact = () => {
       email: email,
       message: message,
       phone: phone,
-    });
+    })
+      .then((res) => {
+        toast.success(res.data)
+      })
+    navigate("/")
   };
   //end of post
 

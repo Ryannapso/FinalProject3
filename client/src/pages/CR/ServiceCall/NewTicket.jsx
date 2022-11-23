@@ -24,19 +24,13 @@ const NewTicket = () => {
       
     })
       .then((res) => {
-        if (res.status === 201) {
-          toast.success("Ticket has been created");
+          toast.success(res.data);
           navigate("/serviceCall/ticketList");
-        }
+        
       })
       .catch((err) => {
         if (err.response) {
-          toast.error(
-            "Customer does not exists, close message to create a customer",
-            {
-              onClose: () => navigate("/newCustomer"),
-            }
-          );
+          toast.error(err.response.data.message);
         }
       });
   };

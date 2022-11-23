@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateAdminMessage = ({ match }) => {
@@ -24,16 +24,24 @@ const UpdateAdminMessage = ({ match }) => {
   const ticketUpdate = () => {
     axios
       .put("http://localhost:3001/api/AdminMessage/" + id, ticket)
-      .then((ticket) => console.log(ticket));
-    alert("msg updated");
+      .then((res) => toast.success(res.data))
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
     navigate("/dashboard");
   };
 
   const ticketDelete = () => {
     axios
       .delete("http://localhost:3001/api/AdminMessage/" + id)
-      .then((res) => console.log(res.status));
-    alert("msg deleted");
+      .then((res) => toast.success(res.data))
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
     navigate("/dashboard");
   };
 

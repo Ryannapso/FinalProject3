@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const NewCustomer = () => {
   const navigate = useNavigate();
@@ -19,8 +20,15 @@ const NewCustomer = () => {
       address: address,
       timestamps: timestamps,
       phone: phone,
-    }).then();
-    alert("New customer Added");
+    })
+      .then((res) => {
+        toast.success(res.data);
+      })
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
     navigate("/customersList");
   };
   //end of post

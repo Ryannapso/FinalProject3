@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../App";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { userData, setUserData } = useContext(UserContext);
@@ -61,6 +62,7 @@ const Register = () => {
       });
       window.location = "/";
     } catch (err) {
+      toast.error(err.response.data.msg);
       console.log(err);
     }
   };
