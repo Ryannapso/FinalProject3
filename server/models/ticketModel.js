@@ -9,7 +9,7 @@ const ticketsSchema = mongoose.Schema(
     assignedTo: {
       type: String,
       default: "cr",
-      enum: ["cr", "Phone", "PC", "BuildPc"],
+      enum: ["cr", "Phone", "PCfix", "BuildPc"],
     },
     status: {
       type: String,
@@ -22,6 +22,30 @@ const ticketsSchema = mongoose.Schema(
     customer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Customer",
+    },
+    cpu: {
+      type: String,
+    },
+    motherboard: {
+      type: String,
+    },
+    memory: {
+      type: String,
+    },
+    gpu: {
+      type: String,
+    },
+    pcCase: {
+      type: String,
+    },
+    powerSupply: {
+      type: String,
+    },
+    storage: {
+      type: String,
+    },
+    cpuCooler: {
+      type: String,
     },
   },
   {

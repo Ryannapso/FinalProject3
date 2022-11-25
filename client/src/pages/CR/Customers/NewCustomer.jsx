@@ -13,6 +13,8 @@ const NewCustomer = () => {
   const [address, setAddress] = useState("");
   const [timestamps] = useState("");
 
+
+
   const addToList = () => {
     Axios.post("http://localhost:3001/api/customers", {
       name: name,
@@ -25,9 +27,7 @@ const NewCustomer = () => {
         toast.success(res.data);
       })
       .catch((err) => {
-        if (err.response) {
-          toast.error(err.response.data.message);
-        }
+        toast.error(err.response.data);
       });
     navigate("/customersList");
   };

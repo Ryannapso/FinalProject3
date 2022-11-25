@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
@@ -23,6 +24,14 @@ const Phone = () => {
       return { backgroundColor: "red", text: "bold" };
     }
   };
+  const idFormatter = (data, row) => {
+    return (
+      <Link to={`/serviceCall/updateTicket/${data}`}>
+        <Button variant="primary">Edit Ticket</Button>
+      </Link>
+    );
+  };
+
   const dateFormatter = (data, row) => {
     return new Date(data).toLocaleDateString("he-IL");
   };
@@ -30,9 +39,10 @@ const Phone = () => {
     {
       dataField: "_id",
       text: "Id",
+      formatter: idFormatter,
     },
     {
-      dataField: "date",
+      dataField: "createdAt",
       text: "date",
       sort: true,
       filter: textFilter(),

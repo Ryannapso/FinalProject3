@@ -12,10 +12,10 @@ function home() {
           <div className="row justify-content-center">
             <div className="col-md-8">
               <h1 className="display-4 fw-bolder mb-4 text-center text-white">
-                Pc shop
+                PC shop
               </h1>
               <p className="lead text-center fs-4 mb-5 text-white">
-                we specialize in pc , phone , gaming console sales and repair.
+                we specialize in computers , Mobile phones and gaming consoles, sales and repair.
               </p>
               <div className="buttons d-flex justify-content-center">
                 <NavLink

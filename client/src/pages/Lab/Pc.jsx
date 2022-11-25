@@ -44,7 +44,7 @@ const Pc = () => {
       formatter: idFormatter,
     },
     {
-      dataField: "date",
+      dataField: "createdAt",
       text: "date",
       sort: true,
       filter: textFilter(),

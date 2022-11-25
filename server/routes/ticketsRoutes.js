@@ -27,7 +27,20 @@ router.get("/:id", (req, res) => {
 router.post(
   "/",
   asyncHandler(async (req, res) => {
-    const { problem, assignedTo, status, customerPhone } = req.body;
+    const {
+      problem,
+      assignedTo,
+      status,
+      customerPhone,
+      cpu,
+      motherboard,
+      memory,
+      gpu,
+      pcCase,
+      powerSupply,
+      storage,
+      cpuCooler,
+    } = req.body;
     const customer = await Customer.findOne({ phone: customerPhone });
 
     if (customer) {
@@ -37,6 +50,14 @@ router.post(
         status,
         customerPhone,
         customer: customer.id,
+        cpu,
+        motherboard,
+        memory,
+        gpu,
+        pcCase,
+        powerSupply,
+        storage,
+        cpuCooler,
       });
 
       customer.tickets.push(ticket._id);

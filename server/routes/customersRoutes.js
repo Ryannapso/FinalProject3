@@ -25,10 +25,14 @@ router.post("/", (req, res) => {
     address: req.body.address,
   });
 
+  if (!req.body.phone || !req.body.email||!req.body.name){
+    return res.status(400).json("Please enter all fields" );
+  }
+
   newCustomer
     .save()
-    .then((customer) => res.json("New customer Added"))
-    .catch((err) => res.status(400).json(err));
+    .then((newCustomer) => res.json("New customer Added"))
+    .catch((err) => res.status(400).json("Customer already exists"));
 });
 
 router.delete("/:id", (req, res) => {

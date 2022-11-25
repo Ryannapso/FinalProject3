@@ -2,7 +2,7 @@ GET http://localhost:3001/api/users/62c186e59ccfa34ba7b5b4a1
 
 ###
 
-GET http://localhost:3001/api/users/register
+GET http://localhost:3001/api/users
 
 
 ###
@@ -31,21 +31,21 @@ DELETE http://localhost:3001/api/users/62bdccdcff7427133145b65f
 
 ###
 
-GET http://localhost:3001/api/customers/search/0
+GET http://localhost:3001/api/tickets
 
 
 
 ###
 
-POST http://localhost:3001/api/pcBuilds/
+POST http://localhost:3001/api/tickets
 Content-Type: application/json
 
 {
-  "cpu":"intel",
-  "motherboard":"asus",
-  "memory":"16gb",
-    "status":"open",
-    "customerPhone":"0504206262"
+"cpu":"intel",
+"motherboard":"asus",
+"memory":"16gb",
+"status":"open",
+"customerPhone":"0504206262"
     
 }
 

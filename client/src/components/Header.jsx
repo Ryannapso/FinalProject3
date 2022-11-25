@@ -3,11 +3,7 @@ import { UserContext } from "../App";
 import React, { useContext } from "react";
 import { Nav } from "react-bootstrap";
 
-
-
 const Header = () => {
-
-  
   const { userData, setUserData } = useContext(UserContext);
   const logOut = () => {
     setUserData({
@@ -54,9 +50,6 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
-          <NavLink className="navbar-brand fw-bolder fs-4 mx-auto" to="/">
-            Home
-          </NavLink>
 
           {userData.user ? (
             <Nav>
@@ -96,7 +89,6 @@ const Header = () => {
               >
                 <i className="fa fa-sign-in me-2"></i> Login
               </NavLink>
-           
             </Nav>
           )}
         </div>
