@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import { toast } from "react-toastify";
 
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -8,16 +8,15 @@ const UpdateUser = ({ match }) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-
   const [user, setUser] = useState({
     name: "",
     email: "",
     date: "",
     role: "",
-    password:"",
-    Lname:"",
-    phone:"",
-    location:"",
+    password: "",
+    Lname: "",
+    phone: "",
+    location: "",
   });
 
   useEffect(() => {
@@ -29,8 +28,14 @@ const UpdateUser = ({ match }) => {
   const UserUpdate = () => {
     axios
       .put("http://localhost:3001/api/users/update/" + id, user)
-      .then((user) => console.log(user));
-    alert("user updated");
+      .then((res) => {
+        toast.success(res.data, { autoClose: 1000 });
+      })
+      .catch((err) => {
+        if (err.response) {
+          toast.error(err.response.data.message);
+        }
+      });
     navigate("/admin/userList");
   };
 
@@ -139,7 +144,7 @@ const UpdateUser = ({ match }) => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                  phone
+                    phone
                   </label>
                   <input
                     required
@@ -154,7 +159,7 @@ const UpdateUser = ({ match }) => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                  location
+                    location
                   </label>
                   <input
                     required
@@ -169,7 +174,7 @@ const UpdateUser = ({ match }) => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                  role
+                    role
                   </label>
                   <select
                     required
@@ -181,15 +186,14 @@ const UpdateUser = ({ match }) => {
                     value={user.role}
                     onChange={handleChange}
                   >
-                         <option value=""></option>
+                    <option value=""></option>
                     <option value="user">user</option>
                     <option value="cr">cr</option>
                     <option value="tech">tech</option>
                     <option value="admin">admin</option>
                   </select>
                 </div>
-                
-            
+
                 <div className="buttons d-flex justify-content-center p-1">
                   <button
                     type="submit"

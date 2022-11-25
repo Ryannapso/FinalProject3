@@ -153,13 +153,13 @@ router.get("/", (req, res) => {
 router.get("/update/:id", (req, res) => {
   User.findById(req.params.id)
     .then((msgs) => res.json(msgs))
-    .catch((err) => res.json("Error: +err"));
+    .catch((err) => res.json(err));
 });
 router.delete("/update/:id", (req, res) => {});
 
 router.put("/update/:id", (req, res) => {
   User.findByIdAndUpdate(req.params.id, { $set: req.body })
-    .then(() => res.json("UserSchema updated"))
+    .then(() => res.json("User has been updated"))
     .catch((err) => res.status(400).json(err));
 });
 
@@ -176,7 +176,7 @@ router.post("/register/admin", (req, res) => {
 
   newUser
     .save()
-    .then((user) => res.json("New UserAdded"))
+    .then((user) => res.json("New User Added"))
     .catch((err) => res.status(400).json(err));
 });
 

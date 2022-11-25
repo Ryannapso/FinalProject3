@@ -47,6 +47,7 @@ const Reports = () => {
 
   const handleFromDateChosen = (event) => {
     setFromDateChosen(event.target.value);
+    
   };
 
   const filteredDateData = tickets.filter((item) => {
@@ -94,7 +95,7 @@ const Reports = () => {
                   defaultValue={"open"}
                   onChange={handleStatusChosen}
                 >
-                  <option value="oen">Select</option>
+                  <option value="">Select</option>
                   {status.map((status) => (
                     <option value={status} key={status}>
                       {status}
