@@ -26,7 +26,9 @@ const UserList = () => {
       </Link>
     );
   };
-
+  const dateFormatter = (data, row) => {
+    return new Date(data).toLocaleDateString("he-IL");
+  };
   const columns = [
     {
       dataField: "_id",
@@ -44,10 +46,11 @@ const UserList = () => {
       filter: textFilter(),
     },
     {
-      dataField: "date",
+      dataField: "createdAt",
       text: "date",
       sort: true,
       filter: textFilter(),
+      formatter: dateFormatter,
     },
     {
       dataField: "role",
