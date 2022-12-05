@@ -71,11 +71,7 @@ const Pc = () => {
       filter: textFilter({ defaultValue: "BuildPC" }),
     },
 
-    {
-      dataField: "action",
-      text: "test",
-      isDummyField: true,
-    },
+
   ];
 
   const pagination = paginationFactory({

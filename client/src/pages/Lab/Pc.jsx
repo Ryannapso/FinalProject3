@@ -71,11 +71,6 @@ const Pc = () => {
       filter: textFilter({ defaultValue: "PC" }),
     },
 
-    {
-      dataField: "action",
-      text: "test",
-      isDummyField: true,
-    },
   ];
 
   const pagination = paginationFactory({

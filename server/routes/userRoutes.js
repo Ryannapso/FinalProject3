@@ -8,7 +8,6 @@ const auth = require("../middleware/auth");
 //register-----------------------------------------------------
 
 router.post("/register", async (req, res) => {
-
   //validation
   //!req.body.name ||
   //test to check if he provide a user name or password or mail
@@ -46,10 +45,7 @@ router.post("/register", async (req, res) => {
   });
 });
 
-
-
 //login------------------------------------------------------
-
 
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });

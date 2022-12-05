@@ -5,7 +5,6 @@ const customersSchema = require("../models/customerModel");
 router.get("/", async (req, res) => {
   await customersSchema
     .find().populate('tickets')
-    .populate('pcBuilds')
     .then((customer) => res.json(customer))
     .catch((err) => res.status(400).json(err));
 });

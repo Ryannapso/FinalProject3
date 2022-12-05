@@ -155,11 +155,11 @@ const Profile = () => {
                         type="text"
                         name="birthday"
                         placeholder="Enter your birthday"
-                        value={
-                          userData.user.date.toString().slice(0, 10) +
-                          " @ " +
-                          userData.user.date.toString().slice(11, 19)
-                        }
+                        // value={
+                        //   userData.user.date.toString().slice(0, 10) +
+                        //   " @ " +
+                        //   userData.user.date.toString().slice(11, 19)
+                        // }
                       />
                     </div>
                   </div>
