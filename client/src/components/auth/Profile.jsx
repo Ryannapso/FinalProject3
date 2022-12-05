@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../App";
 import "../../App.css";
-//import FileBase64 from "react-file-base64";
 
 const Profile = () => {
   const { userData } = useContext(UserContext);
-  //const [image, setName] = useState("");
 
   return (
     <div>
@@ -46,7 +44,7 @@ const Profile = () => {
                       id="inputUsername"
                       type="text"
                       placeholder="Enter your username"
-                      value={userData.user.id}
+                      value={userData.user._id}
                     />
                   </div>
                   <div class="col-md-6">
