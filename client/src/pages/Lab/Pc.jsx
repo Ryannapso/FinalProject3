@@ -68,7 +68,7 @@ const Pc = () => {
       dataField: "assignedTo",
       text: "assignedTo",
       sort: true,
-      filter: textFilter({ defaultValue: "PC" }),
+      filter: textFilter({ defaultValue: "PCfix" }),
     },
 
   ];
