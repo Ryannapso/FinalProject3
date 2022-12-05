@@ -7,7 +7,7 @@ function ReportsTable(props) {
       <Table striped bordered hover variant="">
         <thead>
           <tr>
-            <th>id</th>
+            {/* <th>id</th> */}
             <th>create date</th>
             <th>update date</th>
             <th>problem</th>
@@ -20,7 +20,7 @@ function ReportsTable(props) {
           {props.tableData.map((item) => {
             return (
               <tr>
-                <td>{item._id}</td>
+                {/* <td>{item._id}</td> */}
                 <td>{new Date(item.createdAt).toLocaleDateString("he-IL")}</td>
                 <td>{new Date(item.updatedAt).toLocaleDateString("he-IL")}</td>
                 <td>{item.problem}</td>

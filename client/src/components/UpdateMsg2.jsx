@@ -15,14 +15,14 @@ const UpdateMsg2 = ({ match }) => {
     phone: "",
     message: "",
     status: "",
-    date: "",
+    createdAt: "",
     id: "",
   });
 
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/message/" + id)
-      .then((response) => setMsg(response.data))
+      .then((response) => setMsg(response.data));
   }, []);
 
   const MsgUpdate = () => {
@@ -100,7 +100,7 @@ const UpdateMsg2 = ({ match }) => {
                     className="form-control"
                     id="date"
                     name="date"
-                    value={msg.date}
+                    value={msg.createdAt}
                   />
                 </div>
                 <div className="mb-3">
