@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../App";
 import "../../App.css";
-//import FileBase64 from "react-file-base64";
 
 const Profile = () => {
   const { userData } = useContext(UserContext);
-  //const [image, setName] = useState("");
 
   return (
     <div>
@@ -28,31 +26,31 @@ const Profile = () => {
               <div class="card-header">Account Details</div>
               <div class="card-body">
                 <form>
-                  <div class="row gx-3 mb-3">
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputUsername">
-                        Id
-                      </label>
-                      <input
-                        class="form-control"
-                        id="inputUsername"
-                        type="text"
-                        placeholder="Enter your username"
-                        value={userData.user._id}
-                      />
-                    </div>
-                    <div class="col-md-6">
-                      <label class="small mb-1" for="inputUsername">
-                        Role
-                      </label>
-                      <input
-                        class="form-control"
-                        id="role"
-                        type="text"
-                        placeholder="role"
-                        value={userData.user.role}
-                      />
-                    </div>
+                <div class="row gx-3 mb-3">
+                  <div class="col-md-6">
+                    <label class="small mb-1" for="inputUsername">
+                      Id
+                    </label>
+                    <input
+                      class="form-control"
+                      id="inputUsername"
+                      type="text"
+                      placeholder="Enter your username"
+                      value={userData.user.id}
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="small mb-1" for="inputUsername">
+                      Role
+                    </label>
+                    <input
+                      class="form-control"
+                      id="role"
+                      type="text"
+                      placeholder="role"
+                      value={userData.user.role}
+                    />
+                  </div>
                   </div>
                   <div class="row gx-3 mb-3">
                     <div class="col-md-6">
