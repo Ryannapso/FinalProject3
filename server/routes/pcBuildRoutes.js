@@ -11,11 +11,11 @@ router.get("/", asyncHandler(async (req, res) => {
     .catch((err) => res.status(400).json(err));
 }));
 
-router.get("/:id", (req, res) => {
-  PCBuild.findById(req.params.id)
+router.get("/:id", asyncHandler(async(req, res) => {
+  await PCBuild.findById(req.params.id)
     .then((pcBuild) => res.json(pcBuild))
     .catch((err) => res.json(err));
-});
+}));
 
 router.post(
   "/",
@@ -38,8 +38,8 @@ router.post(
         customer: customer.id,
       });
 
-      customer.pcBuilds.push(pcBuild._id);
-      customer.save();
+      await customer.pcBuilds.push(pcBuild._id);
+      await customer.save();
       res.status(201).json(pcBuild);
     } else {
       res.status(400);
@@ -48,16 +48,16 @@ router.post(
   })
 );
 
-router.delete("/:id", (req, res) => {
-  PCBuild.findByIdAndDelete(req.params.id)
+router.delete("/:id",asyncHandler(async (req, res) => {
+  await PCBuild.findByIdAndDelete(req.params.id)
     .then(() => res.json("pcBuild deleted"))
     .catch((err) => res.status(400).json(err));
-});
+}));
 
-router.put("/:id", (req, res) => {
-  PCBuild.findByIdAndUpdate(req.params.id, { $set: req.body })
+router.put("/:id", asyncHandler(async(req, res) => {
+  await PCBuild.findByIdAndUpdate(req.params.id, { $set: req.body })
     .then(() => res.json("pcBuild updated"))
     .catch((err) => res.status(400).json(err));
-});
+}));
 
 module.exports = router;

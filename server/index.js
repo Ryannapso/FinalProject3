@@ -12,7 +12,6 @@ const AdminMessageRoutes = require("./routes/AdminMessageRoutes");
 const reportsRoutes = require("./routes/reportRoutes");
 const { errorHandler } = require("./middleware/errorMiddleware");
 
-
 connectDB();
 
 const app = express();

@@ -4,50 +4,54 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const auth = require("../middleware/auth");
+const asyncHandler = require("express-async-handler");
 
 //register-----------------------------------------------------
 
-router.post("/register", async (req, res) => {
-  //validation
-  //!req.body.name ||
-  //test to check if he provide a user name or password or mail
+router.post(
+  "/register",
+  asyncHandler(async (req, res) => {
+    //validation
+    //!req.body.name ||
+    //test to check if he provide a user name or password or mail
 
-  if (!req.body.password || !req.body.email) {
-    return res.status(400).json({ msg: "Please enter all fields" });
-  }
-  //max 15 char
-  if (req.body.name.length > 15) {
-    return res.status(400).json({ msg: "Name length is 15 characters MAX" });
-  }
-  //user exists
-  const user = await User.findOne({ name: req.body.name });
-  if (user) {
-    return res.status(400).json({ msg: "User already exists" });
-  }
+    if (!req.body.password || !req.body.email) {
+      return res.status(400).json({ msg: "Please enter all fields" });
+    }
+    //max 15 char
+    if (req.body.name.length > 15) {
+      return res.status(400).json({ msg: "Name length is 15 characters MAX" });
+    }
+    //user exists
+    const user = await User.findOne({ name: req.body.name });
+    if (user) {
+      return res.status(400).json({ msg: "User already exists" });
+    }
 
-  //hash password
-  bcrypt.genSalt(10, function (err, salt) {
-    bcrypt.hash(req.body.password, salt, function (err, hash) {
-      const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: hash,
-        Lname: req.body.Lname,
-        phone: req.body.phone,
-        location: req.body.location,
-        role: req.body.role,
+    //hash password
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(req.body.password, salt, function (err, hash) {
+        const newUser = new User({
+          name: req.body.name,
+          email: req.body.email,
+          password: hash,
+          Lname: req.body.Lname,
+          phone: req.body.phone,
+          location: req.body.location,
+          role: req.body.role,
+        });
+        newUser
+          .save()
+          .then((user) => res.json(user))
+          .catch((err) => res.status(400).json(err));
       });
-      newUser
-        .save()
-        .then((user) => res.json(user))
-        .catch((err) => res.status(400).json(err));
     });
-  });
-});
+  })
+);
 
 //login------------------------------------------------------
 
-router.post("/login", async (req, res) => {
+router.post("/login", asyncHandler(async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
 
   //!req.body.password ||
@@ -84,12 +88,12 @@ router.post("/login", async (req, res) => {
       });
     }
   });
-});
+}));
 //login end---------------------------------------------------------
 
 //profile----------------------------------------------------
 
-router.get("/profile", auth, async (req, res) => {
+router.get("/profile", auth, asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   res.json({
     id: user._id,
@@ -102,19 +106,19 @@ router.get("/profile", auth, async (req, res) => {
     role: user.role,
     image: user.image,
   });
-});
+}));
 //profile end----------------------------------------------------
 
 //delete user
-router.delete("/:id", (req, res) => {
-  User.findByIdAndDelete(req.params.id)
+router.delete("/:id",asyncHandler(async (req, res) => {
+  await User.findByIdAndDelete(req.params.id)
     .then(() => res.json("User deleted"))
     .catch((err) => res.status(400).json(err));
-});
+}));
 
 //valid token for protected routes
 
-router.post("/tokenIsValid", async (req, res) => {
+router.post("/tokenIsValid", asyncHandler(async (req, res) => {
   try {
     const token = req.header("auth-token");
     //if no token test
@@ -136,30 +140,30 @@ router.post("/tokenIsValid", async (req, res) => {
   } catch {
     res.status(500).json({ msg: err.message });
   }
-});
+}));
 
 //user list
-router.get("/", (req, res) => {
-  User.find()
+router.get("/", asyncHandler(async(req, res) => {
+  await User.find()
     .then((msgs) => res.json(msgs))
     .catch((err) => res.status(400).json(err));
-});
+}));
 //update
 
-router.get("/update/:id", (req, res) => {
-  User.findById(req.params.id)
+router.get("/update/:id", asyncHandler(async(req, res) => {
+  await User.findById(req.params.id)
     .then((msgs) => res.json(msgs))
     .catch((err) => res.json(err));
-});
-router.delete("/update/:id", (req, res) => {});
+}));
+router.delete("/update/:id", asyncHandler(async(req, res) => {}));
 
-router.put("/update/:id", (req, res) => {
-  User.findByIdAndUpdate(req.params.id, { $set: req.body })
+router.put("/update/:id", asyncHandler(async(req, res) => {
+  await User.findByIdAndUpdate(req.params.id, { $set: req.body })
     .then(() => res.json("User has been updated"))
     .catch((err) => res.status(400).json(err));
-});
+}));
 
-router.post("/register/admin", (req, res) => {
+router.post("/register/admin", asyncHandler(async(req, res) => {
   const newUser = new User({
     name: req.body.name,
     email: req.body.email,
@@ -170,10 +174,10 @@ router.post("/register/admin", (req, res) => {
     role: req.body.role,
   });
 
-  newUser
+  await newUser
     .save()
     .then((user) => res.json("New User Added"))
     .catch((err) => res.status(400).json(err));
-});
+}));
 
 module.exports = router;
