@@ -7,25 +7,17 @@ const Profile = () => {
 
   return (
     <div>
-     
       <div class="container-xl px-4 mt-4">
-        <nav class="nav nav-borders">
-          
-        </nav>
+        <nav class="nav nav-borders"></nav>
         <hr class="mt-0 mb-4" />
         <div class="row">
           <div class="col-xl-4">
             <div class="card mb-4 mb-xl-0">
               <div class="card-header text-center">Profile Picture</div>
               <div class="card-body text-center">
-                <img
-                  class="img-account-profile rounded-circle mb-2"
-                 
-                  alt=""
-                />
+                <img class="img-account-profile rounded-circle mb-2" alt="" />
 
                 <div class="bold font-italic text-muted mb-4">Role text</div>
-               
               </div>
             </div>
           </div>
@@ -44,7 +36,7 @@ const Profile = () => {
                       id="inputUsername"
                       type="text"
                       placeholder="Enter your username"
-                      value={userData.user._id}
+                      value={userData.user.id}
                     />
                   </div>
                   <div class="col-md-6">
@@ -161,14 +153,12 @@ const Profile = () => {
                       />
                     </div>
                   </div>
-
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-     
     </div>
   );
 };
