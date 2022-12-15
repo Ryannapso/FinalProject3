@@ -14,7 +14,7 @@ function CustomerList() {
     axios
       .get("http://localhost:3001/api/customers")
       .then((response) => setCustomers(response.data));
-  }, []);
+  });
 
   const [search, setSearch] = useState('');
 
