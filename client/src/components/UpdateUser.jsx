@@ -17,6 +17,7 @@ const UpdateUser = ({ match }) => {
     Lname: "",
     phone: "",
     location: "",
+    problem: "",
   });
 
   useEffect(() => {

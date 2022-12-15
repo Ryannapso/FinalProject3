@@ -27,7 +27,7 @@ const TicketList = () => {
     );
   };
   const rowStyle = (row, rowIndex) => {
-    if (row === "open") {
+    if (row === "Updated") {
       return { backgroundColor: "red", text: "bold" };
     }
   };
@@ -38,9 +38,8 @@ const TicketList = () => {
 
   const customerFormatter = (data, row) => {
     return <CustomerDetails customer={data}></CustomerDetails>;
-  }
+  };
 
-  
   //make table using
   const columns = [
     {
@@ -80,7 +79,7 @@ const TicketList = () => {
   ];
   const pagination = paginationFactory({
     page: 1,
-    sizePerPage: 10,
+    sizePerPage: 20,
     lastPageText: ">>",
     firstPageText: "<<",
     nextPageText: ">",

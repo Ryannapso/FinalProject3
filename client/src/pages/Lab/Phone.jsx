@@ -71,7 +71,7 @@ const Phone = () => {
   ];
   const pagination = paginationFactory({
     page: 1,
-    sizePerPage: 10,
+    sizePerPage: 20,
     lastPageText: ">>",
     firstPageText: "<<",
     nextPageText: ">",
